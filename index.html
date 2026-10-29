@@ -5,102 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Enclave Hub" />
-  <meta name="theme-color" content="#0b0e17" />
+  <meta name="apple-mobile-web-app-title" content="Enclave" />
+  <meta name="theme-color" content="#090a0d" />
   <title>ENCLAVE NETWORK</title>
 
-  <!-- Shortcut / Home Screen App Icons (Dynamically synced from LOGO_CONFIG on load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link id="dynamic-favicon" rel="icon" type="image/png" href="https://api.dicebear.com/7.x/shapes/svg?seed=EnclaveHub" />
   <link id="dynamic-touch-icon" rel="apple-touch-icon" href="https://api.dicebear.com/7.x/shapes/svg?seed=EnclaveHub" />
 
   <style>
     :root {
-      --bg-deep: #07090f;
-      --bg-panel: #101420;
-      --bg-card: #161c2e;
-      --bg-input: #0c101b;
-      --border: #252f4a;
-      --text-main: #f0f4ff;
-      --text-muted: #8e9cc0;
-      --enclave-gold: #f5b041;
-      --metro-red: #ff2a4b;
-      --punt-green: #53fc18;
-      --knok-cyan: #00f2fe;
-      --knok-pink: #fe0979;
-      --danger: #ff4757;
-      --success: #2ed573;
-      --radius: 14px;
+      --bg-base: #090a0d;
+      --bg-surface: #111318;
+      --bg-elevated: #171a21;
+      --bg-input: #0c0e12;
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(255, 255, 255, 0.16);
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --text-dim: #6b7280;
+      --accent-enclave: #f59e0b;
+      --accent-metro: #ef4444;
+      --accent-punt: #53fc18;
+      --accent-knok: #06b6d4;
+      --danger: #f43f5e;
+      --success: #10b981;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      min-width: 0; /* Prevents flex/grid text spillover */
+      min-width: 0;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      font-family: var(--font-sans);
     }
 
     html, body {
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at top, #151c33 0%, #05070c 100%);
-      color: var(--text-main);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #050507;
+      color: var(--text-primary);
       overflow: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Custom Scrollbars */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
-    ::-webkit-scrollbar-thumb { background: #2d3a5e; border-radius: 999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #43558a; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.28); }
 
-    /* Viewport Shell: Switches cleanly between Desktop Landscape & Mobile Portrait */
     .viewport-wrapper {
       width: 100vw;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
-      transition: all 0.25s ease;
     }
 
     .app-shell {
       width: 100%;
       height: 100%;
-      background: var(--bg-deep);
+      background: var(--bg-base);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       position: relative;
     }
 
-    /* Mobile Portrait Mode Frame */
     .viewport-wrapper.mode-mobile {
-      padding: 12px;
-      background: #020306;
+      padding: 14px;
+      background: #020203;
     }
     .viewport-wrapper.mode-mobile .app-shell {
       width: 100%;
-      max-width: 430px;
+      max-width: 420px;
       height: 94vh;
-      max-height: 900px;
-      border-radius: 34px;
-      border: 6px solid #222a42;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 0 2px #0e1320;
+      max-height: 890px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95);
     }
 
-    /* Top Header Bar */
+    /* Top Header */
     .top-bar {
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding: 10px 16px;
-      background: rgba(16, 20, 32, 0.95);
-      border-bottom: 1px solid var(--border);
+      gap: 12px;
+      padding: 0 20px;
+      background: rgba(17, 19, 24, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
       flex-shrink: 0;
       z-index: 20;
     }
@@ -108,35 +113,34 @@
     .brand-cluster {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       overflow: hidden;
     }
 
     .brand-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       object-fit: cover;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid var(--border-subtle);
       flex-shrink: 0;
-      background: #1a2138;
+      background: var(--bg-elevated);
     }
 
     .brand-title {
       font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 0.6px;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .brand-sub {
-      font-size: 0.7rem;
-      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: var(--text-dim);
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .top-controls {
@@ -146,27 +150,19 @@
       flex-shrink: 0;
     }
 
-    .mode-switch-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #1b233b;
-      color: var(--text-main);
-      border: 1px solid #32416d;
-      padding: 6px 11px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      white-space: nowrap;
-    }
-    .mode-switch-btn:hover {
-      background: #263254;
-      border-color: var(--knok-cyan);
+    /* SVG Icon Sizing */
+    .icon-svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
     }
 
-    /* Main Workspace Layout */
+    /* Workspace & Navigation */
     .workspace {
       flex: 1;
       display: flex;
@@ -174,31 +170,43 @@
       position: relative;
     }
 
-    /* Navigation Rail (Sidebar in Desktop, Bottom Bar in Mobile) */
     .nav-rail {
-      width: 230px;
-      background: var(--bg-panel);
-      border-right: 1px solid var(--border);
+      width: 224px;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-subtle);
       display: flex;
       flex-direction: column;
-      padding: 12px;
-      gap: 6px;
+      padding: 14px 10px;
+      gap: 4px;
       flex-shrink: 0;
       overflow-y: auto;
+    }
+
+    .nav-section-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 10px 12px 4px;
     }
 
     .viewport-wrapper.mode-mobile .workspace {
       flex-direction: column;
     }
+    .viewport-wrapper.mode-mobile .nav-section-label {
+      display: none;
+    }
     .viewport-wrapper.mode-mobile .nav-rail {
       width: 100%;
-      height: auto;
+      height: 58px;
       order: 2;
       flex-direction: row;
       justify-content: space-around;
-      padding: 6px 8px;
+      align-items: center;
+      padding: 0 6px;
       border-right: none;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-subtle);
       overflow-x: auto;
       overflow-y: hidden;
     }
@@ -206,59 +214,85 @@
     .nav-btn {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 11px;
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 11px;
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
       border: 1px solid transparent;
       background: transparent;
-      color: var(--text-muted);
-      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-size: 0.83rem;
       font-weight: 600;
       cursor: pointer;
       text-align: left;
-      transition: 0.18s;
+      transition: all 0.15s ease;
     }
     .nav-btn img {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
       object-fit: cover;
       flex-shrink: 0;
+      background: var(--bg-elevated);
     }
     .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
     }
     .nav-btn.active {
-      background: #1d2642;
+      background: var(--bg-elevated);
       color: #fff;
-      border-color: #3b4e85;
+      border-color: var(--border-subtle);
     }
-    .nav-btn.metro-tab.active { border-color: var(--metro-red); box-shadow: inset 3px 0 0 var(--metro-red); }
-    .nav-btn.punt-tab.active { border-color: var(--punt-green); box-shadow: inset 3px 0 0 var(--punt-green); }
-    .nav-btn.knok-tab.active { border-color: var(--knok-cyan); box-shadow: inset 3px 0 0 var(--knok-cyan); }
-    .nav-btn.admin-tab { color: var(--enclave-gold); border: 1px dashed rgba(245, 176, 65, 0.4); }
-    .nav-btn.admin-tab.active { background: rgba(245, 176, 65, 0.15); border-color: var(--enclave-gold); }
+    .nav-btn.metro-tab.active {
+      color: #fff;
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    .nav-btn.punt-tab.active {
+      color: var(--accent-punt);
+      background: rgba(83, 252, 24, 0.08);
+      border-color: rgba(83, 252, 24, 0.3);
+    }
+    .nav-btn.knok-tab.active {
+      color: var(--accent-knok);
+      background: rgba(6, 182, 212, 0.1);
+      border-color: rgba(6, 182, 212, 0.3);
+    }
+    .nav-btn.admin-tab {
+      color: var(--accent-enclave);
+      margin-top: auto;
+    }
+    .nav-btn.admin-tab.active {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.35);
+    }
 
     .viewport-wrapper.mode-mobile .nav-btn {
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 6px 8px;
-      gap: 4px;
-      font-size: 0.68rem;
+      gap: 3px;
+      font-size: 0.64rem;
       width: auto;
-      min-width: 58px;
-      text-align: center;
+      min-width: 54px;
+      margin-top: 0;
     }
 
-    /* Main Scrollable Content Area */
+    /* Main Stage */
     .main-stage {
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stage-inner {
+      width: 100%;
+      max-width: 780px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -267,58 +301,54 @@
       padding: 12px;
     }
 
-    /* Generic Cards & Containers */
+    /* Surfaces & Cards */
     .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px;
     }
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
     }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
     }
 
-    /* Typography & Badges */
-    h1, h2, h3, h4 {
-      line-height: 1.25;
-      word-break: break-word;
-    }
-
+    /* Badges & Pills */
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      background: #232d4b;
-      color: #dbe4ff;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
       white-space: nowrap;
     }
     .badge.verified {
-      background: rgba(0, 242, 254, 0.16);
-      color: var(--knok-cyan);
-      border: 1px solid rgba(0, 242, 254, 0.4);
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--accent-knok);
+      border-color: rgba(6, 182, 212, 0.3);
     }
     .badge.tier {
-      background: rgba(245, 176, 65, 0.16);
-      color: var(--enclave-gold);
-      border: 1px solid rgba(245, 176, 65, 0.4);
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--accent-enclave);
+      border-color: rgba(245, 158, 11, 0.25);
     }
-    .badge.metro { background: rgba(255, 42, 75, 0.2); color: #ff6b81; border: 1px solid var(--metro-red); }
-    .badge.punt { background: rgba(83, 252, 24, 0.15); color: var(--punt-green); border: 1px solid var(--punt-green); }
-    .badge.knoknox { background: rgba(254, 9, 121, 0.2); color: #ff79b0; border: 1px solid var(--knok-pink); }
+    .badge.metro { background: rgba(239, 68, 68, 0.12); color: #f87171; border-color: rgba(239, 68, 68, 0.3); }
+    .badge.punt { background: rgba(83, 252, 24, 0.1); color: var(--accent-punt); border-color: rgba(83, 252, 24, 0.3); }
+    .badge.knoknox { background: rgba(6, 182, 212, 0.12); color: #38bdf8; border-color: rgba(6, 182, 212, 0.3); }
 
     /* Form Controls */
     .form-group {
@@ -328,9 +358,9 @@
       margin-bottom: 12px;
     }
     .form-group label {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
     input[type="text"],
     input[type="password"],
@@ -339,20 +369,49 @@
     select,
     textarea {
       width: 100%;
+      font-family: var(--font-sans);
       background: var(--bg-input);
-      border: 1px solid var(--border);
-      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
       padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 0.88rem;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
       outline: none;
+      transition: border-color 0.15s;
     }
     textarea {
       resize: vertical;
-      min-height: 76px;
+      min-height: 82px;
+      line-height: 1.5;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: var(--knok-cyan);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    /* Custom File Upload Dropzone (Eliminates ugly browser 'Choose file' button) */
+    .upload-dropzone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      background: var(--bg-input);
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .upload-dropzone:hover {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .upload-dropzone input[type="file"] {
+      display: none;
     }
 
     /* Buttons */
@@ -360,42 +419,50 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 9px 14px;
-      border-radius: 10px;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
       border: 1px solid transparent;
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: 0.18s;
+      transition: all 0.15s ease;
       white-space: nowrap;
     }
-    .btn-primary { background: linear-gradient(135deg, #2b58ff, #00d2ff); color: #fff; }
-    .btn-metro { background: var(--metro-red); color: #fff; }
-    .btn-punt { background: var(--punt-green); color: #051b00; }
-    .btn-knok { background: linear-gradient(135deg, var(--knok-pink), var(--knok-cyan)); color: #fff; }
-    .btn-outline { background: #1a2238; color: var(--text-main); border-color: #313f66; }
-    .btn-outline:hover { border-color: #5973b8; }
-    .btn-danger { background: rgba(255, 71, 87, 0.18); color: #ff6b81; border-color: var(--danger); }
-    .btn-success { background: rgba(46, 213, 115, 0.18); color: var(--success); border-color: var(--success); }
-    .btn-sm { padding: 5px 10px; font-size: 0.74rem; border-radius: 8px; }
+    .btn:disabled { opacity: 0.5; pointer-events: none; }
+    .btn-primary { background: #f3f4f6; color: #090a0d; font-weight: 700; }
+    .btn-primary:hover { background: #ffffff; }
+    .btn-metro { background: var(--accent-metro); color: #fff; font-weight: 700; }
+    .btn-punt { background: var(--accent-punt); color: #041200; font-weight: 700; }
+    .btn-knok { background: var(--accent-knok); color: #041318; font-weight: 700; }
+    .btn-outline { background: var(--bg-elevated); color: var(--text-primary); border-color: var(--border-subtle); }
+    .btn-outline:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.06); }
+    .btn-danger { background: rgba(244, 63, 94, 0.12); color: #fb7185; border-color: rgba(244, 63, 94, 0.28); }
+    .btn-danger:hover { background: rgba(244, 63, 94, 0.2); }
+    .btn-success { background: rgba(16, 185, 129, 0.14); color: #34d399; border-color: rgba(16, 185, 129, 0.3); }
+    .btn-sm { padding: 5px 10px; font-size: 0.74rem; border-radius: 6px; }
 
-    /* Auth Screen */
+    /* Auth Container */
     .auth-container {
-      max-width: 460px;
+      max-width: 420px;
       width: 100%;
-      margin: auto;
+      margin: 40px auto;
     }
 
-    /* Post Card */
+    /* Feed Post Cards */
     .post-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
+      transition: border-color 0.15s;
+    }
+    .post-card:hover {
+      border-color: rgba(255, 255, 255, 0.12);
     }
     .post-header {
       display: flex;
@@ -411,73 +478,80 @@
       cursor: pointer;
     }
     .avatar {
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #33436e;
+      border: 1px solid var(--border-hover);
       flex-shrink: 0;
-      background: #0d1220;
+      background: var(--bg-elevated);
     }
     .avatar-lg {
-      width: 74px;
-      height: 74px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--knok-cyan);
+      border: 2px solid var(--border-hover);
       flex-shrink: 0;
+      background: var(--bg-elevated);
     }
     .post-caption {
-      font-size: 0.92rem;
-      line-height: 1.48;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-primary);
       white-space: pre-wrap;
       word-break: break-word;
     }
+
     .post-media-box {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      background: #05070d;
-      border: 1px solid #222b45;
+      background: #050608;
+      border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      max-height: 480px;
+      max-height: 440px;
     }
     .post-media-box img,
     .post-media-box video {
-      width: 100%;
-      max-height: 460px;
+      max-width: 100%;
+      max-height: 430px;
+      width: auto;
+      height: auto;
       object-fit: contain;
       display: block;
+      margin: 0 auto;
     }
     .post-media-box audio {
       width: 100%;
-      margin: 14px;
+      margin: 12px;
     }
+
     .post-actions {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      gap: 6px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
     }
 
-    /* Shared Post Embed Box */
     .shared-embed {
-      background: rgba(11, 15, 26, 0.75);
-      border-left: 3px solid var(--knok-cyan);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--text-secondary);
       padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 0.82rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
     }
 
     /* Chat Layout */
     .chat-layout {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 14px;
+      grid-template-columns: 240px 1fr;
+      gap: 12px;
       min-height: 500px;
     }
     .viewport-wrapper.mode-mobile .chat-layout {
@@ -488,142 +562,218 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       padding: 12px;
       background: var(--bg-input);
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
     }
     .msg-bubble {
-      max-width: 82%;
-      padding: 9px 12px;
-      border-radius: 12px;
-      background: #1d2744;
+      max-width: 80%;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
       align-self: flex-start;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
     }
     .msg-bubble.mine {
-      background: #1b4965;
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.18);
       align-self: flex-end;
     }
     .reply-quote {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       padding: 4px 8px;
-      margin-bottom: 6px;
-      border-left: 2px solid var(--enclave-gold);
-      background: rgba(0, 0, 0, 0.25);
+      margin-bottom: 5px;
+      border-left: 2px solid var(--accent-enclave);
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 4px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
-    /* Modal Overlay */
+    /* Modals */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(3, 5, 10, 0.82);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
       z-index: 999;
     }
-    .modal-backdrop.open {
-      display: flex;
-    }
+    .modal-backdrop.open { display: flex; }
     .modal-box {
-      background: var(--bg-panel);
-      border: 1px solid #384978;
-      border-radius: 16px;
-      max-width: 600px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      max-width: 580px;
       width: 100%;
       max-height: 86vh;
       overflow-y: auto;
-      padding: 18px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
+    }
+
+    /* Anti-Double-Tap Loading Popup */
+    .loading-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 6, 8, 0.8);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: all;
+      user-select: none;
+    }
+    .loading-popup-overlay.active { display: flex; }
+    .loading-popup-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hover);
+      border-radius: 14px;
+      padding: 22px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+      text-align: center;
+      min-width: 210px;
+    }
+    .loading-spinner-circle {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: enclaveSpin 0.7s linear infinite;
+    }
+    @keyframes enclaveSpin { to { transform: rotate(360deg); } }
+    .loading-title-text {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .loading-dots::after {
+      content: '';
+      animation: dotPulse 1.4s steps(4, end) infinite;
+    }
+    @keyframes dotPulse {
+      0% { content: ''; }
+      25% { content: '.'; }
+      50% { content: '..'; }
+      75% { content: '...'; }
+      100% { content: ''; }
+    }
+    .loading-sub-text {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
     }
 
     .toast {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #1b2540;
+      background: var(--bg-elevated);
       color: #fff;
-      border: 1px solid var(--knok-cyan);
+      border: 1px solid var(--border-hover);
       padding: 10px 16px;
-      border-radius: 10px;
-      font-size: 0.83rem;
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
       font-weight: 600;
       z-index: 1200;
       display: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
     }
   </style>
 </head>
 <body>
 
+<!-- LOADING POPUP -->
+<div id="loadingOverlay" class="loading-popup-overlay">
+  <div class="loading-popup-card">
+    <div class="loading-spinner-circle"></div>
+    <div class="loading-title-text">Loading<span class="loading-dots"></span></div>
+    <div class="loading-sub-text" id="loadingSubText">Syncing Enclave Network</div>
+  </div>
+</div>
+
 <div id="viewportWrapper" class="viewport-wrapper mode-desktop">
   <div class="app-shell">
 
-    <!-- TOP BAR (Corner Enclave Hub Logo + Viewport Portrait/Landscape Toggle) -->
     <header class="top-bar">
       <div class="brand-cluster">
-        <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave Hub Logo" />
+        <img id="cornerHubLogo" class="brand-logo" src="" alt="Enclave" onerror="this.src=FALLBACK_AVATAR" />
         <div>
-          <div class="brand-title" id="topBarTitle">ENCLAVE SOCIAL HUB</div>
-          <div class="brand-sub" id="topBarSubtitle">MetroTV • PUNT • KnokNox</div>
+          <div class="brand-title" id="topBarTitle">ENCLAVE NETWORK</div>
+          <div class="brand-sub" id="topBarSubtitle">METRO.TV / PUNT / KNOKNOX</div>
         </div>
       </div>
 
       <div class="top-controls">
-        <button type="button" class="mode-switch-btn" onclick="toggleViewportMode()" id="viewportToggleBtn">
-          📱 Switch to Mobile (Portrait)
-        </button>
-        <button type="button" class="btn btn-outline btn-sm" id="syncBtn" onclick="refreshFromServer()" style="display:none;">
-          ↻ Sync
+        <button type="button" class="btn btn-outline btn-sm" onclick="toggleViewportMode()" id="viewportToggleBtn"></button>
+        <button type="button" class="btn btn-outline btn-sm" id="syncBtn" onclick="refreshFromServer(true)" style="display:none;">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+          <span>Sync</span>
         </button>
         <button type="button" class="btn btn-danger btn-sm" id="logoutBtn" onclick="logout()" style="display:none;">
-          Log Out
+          <span>Sign Out</span>
         </button>
       </div>
     </header>
 
-    <!-- MAIN WORKSPACE -->
     <div class="workspace">
-      <!-- NAVIGATION RAIL (Hidden when logged out) -->
       <nav class="nav-rail" id="navRail" style="display:none;">
+        <div class="nav-section-label">Account</div>
         <button class="nav-btn active" data-page="profile" onclick="navigate('profile')">
-          <span>👤</span> <span>Main Profile</span>
-        </button>
-        <button class="nav-btn metro-tab" data-page="metrotv" onclick="navigate('metrotv')">
-          <img id="navMetroLogo" src="" alt="MetroTV" /> <span>METRO TV</span>
-        </button>
-        <button class="nav-btn punt-tab" data-page="punt" onclick="navigate('punt')">
-          <img id="navPuntLogo" src="" alt="PUNT" /> <span>PUNT Live</span>
-        </button>
-        <button class="nav-btn knok-tab" data-page="knoknox" onclick="navigate('knoknox')">
-          <img id="navKnokLogo" src="" alt="KnokNox" /> <span>KNOKNOX</span>
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Profile</span>
         </button>
         <button class="nav-btn" data-page="search" onclick="navigate('search')">
-          <span>🔍</span> <span>Search Others</span>
+          <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span>Directory</span>
         </button>
         <button class="nav-btn" data-page="connections" onclick="navigate('connections')">
-          <span>💬</span> <span>Connections</span>
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Connections</span>
         </button>
+
+        <div class="nav-section-label">Networks</div>
+        <button class="nav-btn metro-tab" data-page="metrotv" onclick="navigate('metrotv')">
+          <img id="navMetroLogo" src="" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <span>Metro TV</span>
+        </button>
+        <button class="nav-btn punt-tab" data-page="punt" onclick="navigate('punt')">
+          <img id="navPuntLogo" src="" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <span>PUNT</span>
+        </button>
+        <button class="nav-btn knok-tab" data-page="knoknox" onclick="navigate('knoknox')">
+          <img id="navKnokLogo" src="" alt="" onerror="this.src=FALLBACK_AVATAR" />
+          <span>KnokNox</span>
+        </button>
+
         <button class="nav-btn admin-tab" id="navAdminBtn" data-page="admin" onclick="navigate('admin')" style="display:none;">
-          <span>🛡️</span> <span>Enclave Admin</span>
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>⚙️</span>
         </button>
       </nav>
 
-      <!-- CONTENT STAGE -->
-      <main class="main-stage" id="mainStage"></main>
+      <main class="main-stage">
+        <div class="stage-inner" id="mainStage"></div>
+      </main>
     </div>
 
   </div>
 </div>
 
-<!-- MODAL (OP Profile Inspection / Report Post / Share to Chat) -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this) closeModal()">
   <div class="modal-box" id="modalContent"></div>
 </div>
@@ -631,62 +781,74 @@
 <div class="toast" id="toastBox"></div>
 
 <script>
-/**
- * ============================================================================
- * 1. PASTE YOUR GOOGLE SCRIPT URL & CUSTOM LOGOS HERE
- * ============================================================================
- */
+const FALLBACK_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><rect width="120" height="120" rx="24" fill="#171a21"/><circle cx="60" cy="46" r="20" fill="#4b5563"/><path d="M26 104c6-18 20-28 34-28s28 10 34 28" fill="#4b5563"/></svg>`
+);
+
 const LOGO_CONFIG = {
-  // Paste your deployed Google Apps Script Web App URL ('https://script.google.com/macros/s/.../exec')
-  // Leave blank to run automatically in Local Persistent Demo Mode.
   GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyr_zSADadx-_Yl3qbAv3EF_T16XQw7rGsn-Ofm_bw7WC_jcpn5t8VsraYT-lJAxnJUGg/exec',
 
-  // Replace these 4 links with your custom logos:
   ENCLAVE_HUB_LOGO: 'https://api.dicebear.com/7.x/shapes/svg?seed=EnclaveHub',
-  METRO_TV_LOGO:    'https://api.dicebear.com/7.x/Identicon/svg?seed=MetroTV',
-  PUNT_LOGO:        'https://api.dicebear.com/7.x/Identicon/svg?seed=PUNT',
-  KNOKNOX_LOGO:     'https://api.dicebear.com/7.x/Identicon/svg?seed=KnokNox'
+  METRO_TV_LOGO:    'https://api.dicebear.com/7.x/identicon/svg?seed=MetroTV',
+  PUNT_LOGO:        'https://api.dicebear.com/7.x/identicon/svg?seed=PUNT',
+  KNOKNOX_LOGO:     'https://api.dicebear.com/7.x/identicon/svg?seed=KnokNox'
 };
 
 const PLATFORM_SPECS = {
   METROTV: {
-    name: 'METRO TV',
+    name: 'Metro TV',
+    sub: 'Long-Form Video & Studio Drops',
     badgeClass: 'metro',
     btnClass: 'btn-metro',
-    maxDurationSec: 600, // 10 minutes
-    bestResolution: '1920×1080 (1080p FHD 16:9 Landscape)',
-    tagline: 'Long-Form Video Titan • 30-Min Essays • Phone Reviews • Keynotes (Max 10m Upload)',
+    accentColor: 'var(--accent-metro)',
+    maxDurationSec: 600,
+    targetMaxW: 640,
+    targetMaxH: 360,
+    bestResolution: '640×360 (16:9)',
     logoKey: 'METRO_TV_LOGO'
   },
   PUNT: {
     name: 'PUNT',
+    sub: 'Live Streams, Ranked Grinds & IRL Broadcasts',
     badgeClass: 'punt',
     btnClass: 'btn-punt',
-    maxDurationSec: 300, // 5 minutes
-    bestResolution: '1280×720 (720p60 HD 16:9 Live Clip)',
-    tagline: '90/10 Split Unfiltered Live Streams • Pro Gamer Scrims • IRL Walks (Max 5m Upload)',
+    accentColor: 'var(--accent-punt)',
+    maxDurationSec: 300,
+    targetMaxW: 640,
+    targetMaxH: 360,
+    bestResolution: '640×360 (Live VOD)',
     logoKey: 'PUNT_LOGO'
   },
   KNOKNOX: {
-    name: 'KNOKNOX',
+    name: 'KnokNox',
+    sub: 'Short-Form Algorithmic Vertical Feed',
     badgeClass: 'knoknox',
     btnClass: 'btn-knok',
-    maxDurationSec: 60, // 1 minute
-    bestResolution: '1080×1920 (9:16 Vertical Full HD)',
-    tagline: 'Hyper-Viral FYP Short-Form Vertical Swipe Feed • Equal Shot Algorithm (Max 1m Upload)',
+    accentColor: 'var(--accent-knok)',
+    maxDurationSec: 60,
+    targetMaxW: 360,
+    targetMaxH: 640,
+    bestResolution: '360×640 (9:16)',
     logoKey: 'KNOKNOX_LOGO'
   }
 };
 
-/**
- * ============================================================================
- * 2. APPLICATION STATE & FOLLOW TIER ENGINE
- * ============================================================================
- */
+const ICONS = {
+  check: `<svg class="icon-svg" style="width:13px;height:13px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
+  up: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>`,
+  down: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>`,
+  repost: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>`,
+  share: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>`,
+  flag: `<svg class="icon-svg" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>`,
+  upload: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>`,
+  plus: `<svg class="icon-svg" viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>`
+};
+
 let STATE = {
   viewportMode: localStorage.getItem('enclave_viewport_mode') || 'desktop',
   currentPage: 'profile',
   authTab: 'login',
+  composerOpen: false,
   currentUser: null,
   users: [],
   posts: [],
@@ -698,62 +860,106 @@ let STATE = {
   history: [],
   activeChat: { type: 'DM', targetId: '', replyToMsgId: '', replyPreview: '' },
   searchQuery: '',
-  pendingMedia: { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: 'Standard' }
+  pendingMedia: { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' },
+  openOPModalUser: null,
+  isBusy: false
 };
 
-function calculateTierInfo(followersCount) {
-  const f = Math.max(0, Number(followersCount) || 0);
-  if (f <= 50) return { tier: 1, multiplier: 1.0, verified: false, label: 'Tier 1 (1x)' };
-  if (f <= 200) return { tier: 2, multiplier: 1.5, verified: true, label: 'Tier 2 (1.5x)' };
-  if (f <= 500) return { tier: 3, multiplier: 2.0, verified: true, label: 'Tier 3 (2x)' };
-  if (f <= 1000) return { tier: 4, multiplier: 2.5, verified: true, label: 'Tier 4 (2.5x)' };
-  if (f <= 5000) return { tier: 5, multiplier: 3.0, verified: true, label: 'Tier 5 (3x)' };
-  if (f <= 10000) return { tier: 6, multiplier: 3.5, verified: true, label: 'Tier 6 (3.5x)' };
-  if (f <= 100000) return { tier: 7, multiplier: 4.0, verified: true, label: 'Tier 7 (4x)' };
-  if (f <= 1000000) return { tier: 8, multiplier: 4.5, verified: true, label: 'Tier 8 (4.5x)' };
-  if (f <= 10000000) return { tier: 9, multiplier: 5.0, verified: true, label: 'Tier 9 (5x)' };
-  if (f <= 100000000) return { tier: 10, multiplier: 5.5, verified: true, label: 'Tier 10 (5.5x)' };
-  return { tier: 11, multiplier: 6.0, verified: true, label: 'Tier 11 (6x)' };
+function showLoading(subText) {
+  STATE.isBusy = true;
+  const sub = document.getElementById('loadingSubText');
+  if (sub) sub.textContent = subText || 'Syncing Enclave Network';
+  document.getElementById('loadingOverlay').classList.add('active');
 }
 
-/**
- * ============================================================================
- * 3. INITIALIZATION & LOGO / SHORTCUT BINDING
- * ============================================================================
- */
+function hideLoading() {
+  STATE.isBusy = false;
+  document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+function autoResizeImageFile(file, maxWidth, maxHeight, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width;
+        let h = img.height;
+        const ratio = Math.min(maxWidth / w, maxHeight / h, 1);
+        w = Math.max(1, Math.round(w * ratio));
+        h = Math.max(1, Math.round(h * ratio));
+
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#090a0d';
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+
+        let q = quality || 0.74;
+        let dataUrl = canvas.toDataURL('image/jpeg', q);
+        while (dataUrl.length > 36000 && q > 0.35) {
+          q -= 0.1;
+          dataUrl = canvas.toDataURL('image/jpeg', q);
+        }
+        resolve({
+          dataUrl,
+          width: w,
+          height: h,
+          resolution: w + '×' + h
+        });
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function fixMediaUrl(url) {
+  if (!url) return '';
+  const str = String(url).trim();
+  const match = str.match(/drive\.google\.com\/uc\?export=view&id=([a-zA-Z0-9_-]+)/);
+  if (match && match[1]) {
+    return 'https://drive.google.com/thumbnail?id=' + match[1] + '&sz=w800';
+  }
+  return str;
+}
+
 window.addEventListener('DOMContentLoaded', () => {
+  const savedLogos = localStorage.getItem('enclave_cached_logos');
+  if (savedLogos) {
+    try { Object.assign(LOGO_CONFIG, JSON.parse(savedLogos)); } catch (e) {}
+  }
   applyLogos();
   applyViewportMode(STATE.viewportMode);
-  initLocalDemoDatabaseIfNeeded();
 
   const savedSessionUser = localStorage.getItem('enclave_session_user');
   if (savedSessionUser) {
-    apiCall({ action: 'getBootstrap', username: savedSessionUser }).then(res => {
-      if (res && res.ok && res.currentUser) {
-        ingestBootstrap(res);
-      } else {
-        localStorage.removeItem('enclave_session_user');
-        render();
-      }
-    });
+    const cachedSnap = localStorage.getItem('enclave_state_cache_' + savedSessionUser.toLowerCase());
+    if (cachedSnap) {
+      try { ingestBootstrap(JSON.parse(cachedSnap), true); } catch (e) {}
+    }
+    refreshFromServer(!cachedSnap);
   } else {
     render();
   }
 });
 
 function applyLogos() {
-  const hubLogo = LOGO_CONFIG.ENCLAVE_HUB_LOGO;
+  const hubLogo = fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR;
   document.getElementById('cornerHubLogo').src = hubLogo;
   document.getElementById('dynamic-favicon').href = hubLogo;
   document.getElementById('dynamic-touch-icon').href = hubLogo;
-  document.getElementById('navMetroLogo').src = LOGO_CONFIG.METRO_TV_LOGO;
-  document.getElementById('navPuntLogo').src = LOGO_CONFIG.PUNT_LOGO;
-  document.getElementById('navKnokLogo').src = LOGO_CONFIG.KNOKNOX_LOGO;
+  document.getElementById('navMetroLogo').src = fixMediaUrl(LOGO_CONFIG.METRO_TV_LOGO) || FALLBACK_AVATAR;
+  document.getElementById('navPuntLogo').src = fixMediaUrl(LOGO_CONFIG.PUNT_LOGO) || FALLBACK_AVATAR;
+  document.getElementById('navKnokLogo').src = fixMediaUrl(LOGO_CONFIG.KNOKNOX_LOGO) || FALLBACK_AVATAR;
 }
 
 function toggleViewportMode() {
-  const next = STATE.viewportMode === 'desktop' ? 'mobile' : 'desktop';
-  applyViewportMode(next);
+  applyViewportMode(STATE.viewportMode === 'desktop' ? 'mobile' : 'desktop');
 }
 
 function applyViewportMode(mode) {
@@ -764,38 +970,38 @@ function applyViewportMode(mode) {
   if (mode === 'mobile') {
     wrapper.classList.remove('mode-desktop');
     wrapper.classList.add('mode-mobile');
-    btn.innerHTML = '🖥️ Switch to Desktop (Landscape)';
+    btn.innerHTML = `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Desktop</span>`;
   } else {
     wrapper.classList.remove('mode-mobile');
     wrapper.classList.add('mode-desktop');
-    btn.innerHTML = '📱 Switch to Mobile (Portrait)';
+    btn.innerHTML = `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><span>Mobile View</span>`;
   }
 }
 
-/**
- * ============================================================================
- * 4. API DISPATCHER (Google Sheets Web App + Local Fallback Engine)
- * ============================================================================
- */
-async function apiCall(payload) {
-  const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || localStorage.getItem('enclave_custom_gas_url') || '').trim();
-  if (scriptUrl) {
-    try {
-      const response = await fetch(scriptUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-      return await response.json();
-    } catch (err) {
-      showToast('Google Script network error: ' + err.message);
-      return { ok: false, error: err.message };
-    }
+async function apiCall(payload, loadingMessage) {
+  if (STATE.isBusy && payload.action !== 'getBootstrap') {
+    return { ok: false, error: 'Action in progress...' };
   }
-  return localDatabaseEngine(payload);
+  if (loadingMessage) showLoading(loadingMessage);
+
+  const scriptUrl = (LOGO_CONFIG.GOOGLE_SCRIPT_URL || '').trim();
+  try {
+    const response = await fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    return await response.json();
+  } catch (err) {
+    showToast('Connection error: ' + err.message);
+    return { ok: false, error: err.message };
+  } finally {
+    if (loadingMessage) hideLoading();
+  }
 }
 
-function ingestBootstrap(res) {
+function ingestBootstrap(res, skipCacheSave) {
+  if (!res || !res.currentUser) return;
   STATE.currentUser = res.currentUser;
   STATE.users = res.users || [];
   STATE.posts = res.posts || [];
@@ -806,31 +1012,46 @@ function ingestBootstrap(res) {
   STATE.reports = res.reports || [];
   STATE.history = res.history || [];
 
-  if (res.globalAdminLogo) {
-    document.getElementById('cornerHubLogo').src = res.globalAdminLogo;
+  if (res.brandLogos) {
+    ['ENCLAVE_HUB_LOGO', 'METRO_TV_LOGO', 'PUNT_LOGO', 'KNOKNOX_LOGO'].forEach(k => {
+      if (res.brandLogos[k]) LOGO_CONFIG[k] = res.brandLogos[k];
+    });
+    localStorage.setItem('enclave_cached_logos', JSON.stringify(LOGO_CONFIG));
+  } else if (res.globalAdminLogo) {
+    LOGO_CONFIG.ENCLAVE_HUB_LOGO = res.globalAdminLogo;
   }
+  applyLogos();
 
   localStorage.setItem('enclave_session_user', STATE.currentUser.username);
+  if (!skipCacheSave) {
+    try {
+      localStorage.setItem('enclave_state_cache_' + STATE.currentUser.username.toLowerCase(), JSON.stringify(res));
+    } catch (e) {}
+  }
+
   document.getElementById('navRail').style.display = 'flex';
   document.getElementById('syncBtn').style.display = 'inline-flex';
   document.getElementById('logoutBtn').style.display = 'inline-flex';
   document.getElementById('navAdminBtn').style.display = STATE.currentUser.isAdmin ? 'flex' : 'none';
 
   render();
+  if (STATE.openOPModalUser) openOPProfileModal(STATE.openOPModalUser);
 }
 
-async function refreshFromServer() {
-  if (!STATE.currentUser) return;
-  const res = await apiCall({ action: 'getBootstrap', username: STATE.currentUser.username });
-  if (res.ok) {
+async function refreshFromServer(withLoadingPopup) {
+  const user = STATE.currentUser ? STATE.currentUser.username : localStorage.getItem('enclave_session_user');
+  if (!user) return;
+  const res = await apiCall({ action: 'getBootstrap', username: user }, withLoadingPopup ? 'Syncing Feed' : null);
+  if (res && res.ok && res.currentUser) {
     ingestBootstrap(res);
-    showToast('Synced latest state.');
+    if (withLoadingPopup) showToast('Feed synchronized.');
   }
 }
 
 function logout() {
   localStorage.removeItem('enclave_session_user');
   STATE.currentUser = null;
+  STATE.openOPModalUser = null;
   document.getElementById('navRail').style.display = 'none';
   document.getElementById('syncBtn').style.display = 'none';
   document.getElementById('logoutBtn').style.display = 'none';
@@ -839,86 +1060,84 @@ function logout() {
 
 function navigate(page) {
   STATE.currentPage = page;
-  STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: 'Standard' };
+  STATE.composerOpen = false;
+  STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.page === page);
   });
   render();
 }
 
-/**
- * ============================================================================
- * 5. CLIENT-SIDE MEDIA INSPECTOR (Enforces 10m MetroTV / 5m PUNT / 1m KnokNox)
- * ============================================================================
- */
-function handleMediaFileSelect(inputEl, platformKey) {
+async function handleMediaFileSelect(inputEl, platformKey) {
   const file = inputEl.files && inputEl.files[0];
   const statusEl = document.getElementById('mediaCheckStatus');
+  const previewEl = document.getElementById('mediaLivePreviewBox');
   if (!file) return;
 
   const spec = PLATFORM_SPECS[platformKey];
-  const reader = new FileReader();
 
   if (file.type.startsWith('image/')) {
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        STATE.pendingMedia = {
-          dataUrl: e.target.result,
-          mediaType: 'image',
-          durationSec: 0,
-          resolution: img.width + '×' + img.height + 'px'
-        };
-        if (statusEl) {
-          statusEl.innerHTML = `<span style="color:var(--success);">✓ Image Ready (${STATE.pendingMedia.resolution})</span>`;
-        }
+    showLoading('Optimizing Image...');
+    try {
+      const resized = await autoResizeImageFile(file, spec.targetMaxW, spec.targetMaxH, 0.76);
+      STATE.pendingMedia = {
+        dataUrl: resized.dataUrl,
+        mediaType: 'image',
+        durationSec: 0,
+        resolution: resized.resolution
       };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
+      if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Attached (${resized.resolution})</span>`;
+      if (previewEl) {
+        previewEl.style.display = 'flex';
+        previewEl.innerHTML = `<img src="${resized.dataUrl}" alt="Preview" />`;
+      }
+    } catch (err) {
+      showToast('Failed to process image.');
+    } finally {
+      hideLoading();
+    }
   } else if (file.type.startsWith('video/') || file.type.startsWith('audio/')) {
     const isVideo = file.type.startsWith('video/');
     const tempUrl = URL.createObjectURL(file);
     const mediaEl = document.createElement(isVideo ? 'video' : 'audio');
     mediaEl.preload = 'metadata';
 
+    showLoading('Verifying Media...');
     mediaEl.onloadedmetadata = () => {
       const dur = Math.round(mediaEl.duration || 0);
-      const res = isVideo ? (mediaEl.videoWidth + '×' + mediaEl.videoHeight + 'px') : 'MP3/Audio Stream';
+      const res = isVideo ? (mediaEl.videoWidth + '×' + mediaEl.videoHeight) : 'Audio';
       URL.revokeObjectURL(tempUrl);
 
       if (dur > spec.maxDurationSec) {
+        hideLoading();
         STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
         inputEl.value = '';
-        if (statusEl) {
-          statusEl.innerHTML = `<span style="color:var(--danger);">✕ Rejected: Duration is ${dur}s. ${spec.name} max is ${spec.maxDurationSec}s (${spec.maxDurationSec/60} min).</span>`;
-        }
-        showToast(`${spec.name} limit exceeded! Max ${spec.maxDurationSec / 60} min.`);
+        if (statusEl) statusEl.innerHTML = `<span style="color:var(--danger);">Exceeds ${spec.maxDurationSec/60}m limit (${dur}s)</span>`;
+        showToast(`${spec.name} max duration is ${spec.maxDurationSec / 60}m.`);
         return;
       }
 
+      const reader = new FileReader();
       reader.onload = ev => {
+        hideLoading();
         STATE.pendingMedia = {
           dataUrl: ev.target.result,
           mediaType: isVideo ? 'video' : 'audio',
           durationSec: dur,
           resolution: res
         };
-        if (statusEl) {
-          statusEl.innerHTML = `<span style="color:var(--success);">✓ ${isVideo ? 'Video' : 'Audio'} Verified (${dur}s • ${res})</span>`;
-        }
+        if (statusEl) statusEl.innerHTML = `<span style="color:var(--success);">Ready (${dur}s • ${res})</span>`;
       };
       reader.readAsDataURL(file);
+    };
+    mediaEl.onerror = () => {
+      hideLoading();
+      showToast('Unsupported media format.');
     };
     mediaEl.src = tempUrl;
   }
 }
 
-/**
- * ============================================================================
- * 6. VIEW RENDERERS
- * ============================================================================
- */
 function render() {
   const stage = document.getElementById('mainStage');
   if (!STATE.currentUser) {
@@ -938,78 +1157,73 @@ function render() {
   }
 }
 
-/**
- * 6A. LOGIN & SIGNUP PAGE (with Portrait/Landscape Toggle + Enclave Hub Logo)
- */
 function renderAuthView() {
   const isLogin = STATE.authTab === 'login';
   return `
     <div class="auth-container card">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-        <img src="${LOGO_CONFIG.ENCLAVE_HUB_LOGO}" class="avatar-lg" style="width:58px;height:58px;" alt="Enclave Hub" />
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+        <img src="${fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR}" style="width:44px;height:44px;border-radius:10px;object-fit:cover;" alt="" onerror="this.src=FALLBACK_AVATAR" />
         <div>
-          <h2 style="font-size:1.2rem;">ENCLAVE SOCIAL HUB</h2>
-          <p style="font-size:0.78rem; color:var(--text-muted);">Unified Creator Terminal: Metro TV • PUNT • KnokNox</p>
+          <h2 style="font-size:1.05rem; font-weight:800; letter-spacing:0.02em;">ENCLAVE ID</h2>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">Single Sign-On for Metro TV, PUNT & KnokNox</p>
         </div>
       </div>
 
-      <!-- Portrait vs Landscape Selector Directly on Login Screen -->
-      <div style="display:flex; gap:8px; margin-bottom:14px; background:var(--bg-input); padding:8px; border-radius:10px; border:1px solid var(--border);">
-        <button type="button" class="btn btn-sm ${STATE.viewportMode==='mobile' ? 'btn-primary' : 'btn-outline'}" style="flex:1;" onclick="applyViewportMode('mobile'); render();">
-          📱 Mobile (Portrait)
+      <div style="display:flex; gap:6px; margin-bottom:14px; background:var(--bg-input); padding:4px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+        <button type="button" class="btn btn-sm ${STATE.viewportMode==='mobile' ? 'btn-primary' : 'btn-outline'}" style="flex:1; border:none;" onclick="applyViewportMode('mobile'); render();">
+          Mobile Portrait
         </button>
-        <button type="button" class="btn btn-sm ${STATE.viewportMode==='desktop' ? 'btn-primary' : 'btn-outline'}" style="flex:1;" onclick="applyViewportMode('desktop'); render();">
-          🖥️ Desktop (Landscape)
+        <button type="button" class="btn btn-sm ${STATE.viewportMode==='desktop' ? 'btn-primary' : 'btn-outline'}" style="flex:1; border:none;" onclick="applyViewportMode('desktop'); render();">
+          Desktop Landscape
         </button>
       </div>
 
-      <div style="display:flex; gap:8px; margin-bottom:16px;">
-        <button type="button" class="btn ${isLogin ? 'btn-primary' : 'btn-outline'}" style="flex:1;" onclick="STATE.authTab='login'; render();">Log In</button>
-        <button type="button" class="btn ${!isLogin ? 'btn-primary' : 'btn-outline'}" style="flex:1;" onclick="STATE.authTab='signup'; render();">First-Time Sign Up</button>
+      <div style="display:flex; gap:6px; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+        <button type="button" class="btn ${isLogin ? 'btn-primary' : 'btn-outline'}" style="flex:1;" onclick="STATE.authTab='login'; render();">Sign In</button>
+        <button type="button" class="btn ${!isLogin ? 'btn-primary' : 'btn-outline'}" style="flex:1;" onclick="STATE.authTab='signup'; render();">Create Account</button>
       </div>
 
       ${isLogin ? `
         <form onsubmit="submitLogin(event)">
           <div class="form-group">
             <label>Username</label>
-            <input type="text" id="loginUsername" placeholder="e.g. Z0_Murasaki or EnclaveAdmin" required />
+            <input type="text" id="loginUsername" placeholder="Username" required />
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+            <input type="password" id="loginPassword" placeholder="••••••••" required />
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:4px;">Access Enclave Hub</button>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:4px;">Continue</button>
         </form>
       ` : `
         <form onsubmit="submitSignup(event)">
           <div class="form-group">
-            <label>Username (Used for Login)</label>
+            <label>Handle / Username</label>
             <input type="text" id="signupUsername" placeholder="Letters, numbers, underscores" required />
           </div>
           <div class="form-group">
-            <label>Display Name</label>
-            <input type="text" id="signupDisplayName" placeholder="Your Creator / Channel Name" required />
+            <label>Channel Display Name</label>
+            <input type="text" id="signupDisplayName" placeholder="Public display name" required />
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" id="signupPassword" placeholder="Create password" required />
+            <input type="password" id="signupPassword" placeholder="Create a password" required />
           </div>
           <div class="form-group">
-            <label>Starting Follower Count (Tests Follow Tiers 1–11)</label>
+            <label>Initial Audience (Followers)</label>
             <input type="number" id="signupFollowers" value="75" min="0" />
           </div>
           <div class="form-group">
-            <label>Profile Picture (Upload Image or Paste Image URL)</label>
-            <input type="file" id="signupPicFile" accept="image/*" style="margin-bottom:6px;" />
-            <input type="url" id="signupPicUrl" placeholder="Or paste image URL (optional)" />
+            <label>Avatar</label>
+            <label class="upload-dropzone">
+              ${ICONS.upload} <span id="signupFileName">Upload Avatar Image</span>
+              <input type="file" id="signupPicFile" accept="image/*" onchange="document.getElementById('signupFileName').textContent = this.files[0] ? this.files[0].name : 'Upload Avatar Image'" />
+            </label>
+            <input type="url" id="signupPicUrl" placeholder="Or paste direct image URL (optional)" style="margin-top:6px;" />
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Create Creator Account</button>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Register Enclave ID</button>
         </form>
       `}
-
-      <div style="margin-top:14px; padding-top:12px; border-top:1px solid var(--border); font-size:0.75rem; color:var(--text-muted);">
-        <div><strong>Admin Quick Note:</strong> Username <code>EnclaveAdmin</code></div>
-      </div>
     </div>
   `;
 }
@@ -1018,8 +1232,8 @@ async function submitLogin(e) {
   e.preventDefault();
   const username = document.getElementById('loginUsername').value.trim();
   const password = document.getElementById('loginPassword').value.trim();
-  const res = await apiCall({ action: 'login', username, password });
-  if (!res.ok) return showToast(res.error || 'Login failed');
+  const res = await apiCall({ action: 'login', username, password }, 'Authenticating');
+  if (!res.ok) return showToast(res.error || 'Authentication failed');
   ingestBootstrap(res);
 }
 
@@ -1034,7 +1248,10 @@ async function submitSignup(e) {
 
   let profilePic = urlInput;
   if (fileInput.files && fileInput.files[0]) {
-    profilePic = await fileToDataUrl(fileInput.files[0]);
+    showLoading('Processing Avatar');
+    const resized = await autoResizeImageFile(fileInput.files[0], 240, 240, 0.78);
+    profilePic = resized.dataUrl;
+    hideLoading();
   }
 
   const res = await apiCall({
@@ -1044,14 +1261,11 @@ async function submitSignup(e) {
     password,
     initialFollowers,
     profilePic
-  });
-  if (!res.ok) return showToast(res.error || 'Sign up failed');
+  }, 'Provisioning Account');
+  if (!res.ok) return showToast(res.error || 'Registration failed');
   ingestBootstrap(res);
 }
 
-/**
- * 6B. MAIN PROFILE PAGE (Stats, Follow Tier + Checkmark, Platform Activators, Connection Requests, Cross-Post Feed)
- */
 function renderProfileView() {
   const u = STATE.currentUser;
   const incomingRequests = STATE.connections.filter(
@@ -1062,102 +1276,91 @@ function renderProfileView() {
   );
 
   return `
-    <!-- PROFILE HEADER CARD -->
     <div class="card">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
         <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
-          <img src="${escapeHtml(u.profilePic)}" class="avatar-lg" alt="${escapeHtml(u.displayName)}" />
+          <img src="${escapeHtml(fixMediaUrl(u.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" alt="" onerror="this.src=FALLBACK_AVATAR" />
           <div>
-            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-              <h2 style="font-size:1.3rem;">${escapeHtml(u.displayName)}</h2>
-              ${u.verified ? `<span class="badge verified" title="Verified Creator (Tier 2+)">✓ Verified</span>` : ''}
+            <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
+              <h2 style="font-size:1.2rem; font-weight:800;">${escapeHtml(u.displayName)}</h2>
+              ${u.verified ? `<span class="badge verified" title="Verified">${ICONS.check} Verified</span>` : ''}
               <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
-              ${u.isAdmin ? `<span class="badge" style="background:#5f27cd;color:#fff;">ENCLAVE ADMIN</span>` : ''}
+              ${u.isAdmin ? `<span class="badge" style="color:var(--accent-enclave);border-color:var(--accent-enclave);">STAFF</span>` : ''}
             </div>
-            <div style="color:var(--text-muted); font-size:0.84rem; margin-top:2px;">@${escapeHtml(u.username)}</div>
+            <div style="font-family:var(--font-mono); color:var(--text-secondary); font-size:0.78rem; margin-top:4px;">@${escapeHtml(u.username)}</div>
           </div>
         </div>
 
-        ${u.isAdmin ? `
-          <button class="btn btn-primary" onclick="navigate('admin')">
-            🛡️ Open Enclave Admin Console
-          </button>
-        ` : ''}
+        ${u.isAdmin ? `<button class="btn btn-outline btn-sm" onclick="navigate('admin')">Open Admin Console</button>` : ''}
       </div>
 
-      <!-- CREATOR METRICS -->
       <div class="grid-3" style="margin-top:16px;">
-        <div style="background:var(--bg-input); padding:12px; border-radius:10px; border:1px solid var(--border);">
-          <div style="font-size:0.75rem; color:var(--text-muted);">Followers & Generative Multiplier</div>
-          <div style="font-size:1.25rem; font-weight:800; margin-top:4px;">
-            ${Number(u.followers).toLocaleString()} <span style="font-size:0.8rem; color:var(--enclave-gold);">(${u.multiplier}x)</span>
+        <div style="background:var(--bg-input); padding:12px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.72rem; color:var(--text-secondary);">Audience & Reach</div>
+          <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; margin-top:4px;">
+            ${Number(u.followers).toLocaleString()} <span style="font-size:0.75rem; color:var(--accent-enclave);">${u.multiplier}x</span>
           </div>
         </div>
-        <div style="background:var(--bg-input); padding:12px; border-radius:10px; border:1px solid var(--border);">
-          <div style="font-size:0.75rem; color:var(--text-muted);">Total Post Upvotes</div>
-          <div style="font-size:1.25rem; font-weight:800; color:var(--success); margin-top:4px;">
-            ▲ ${Number(u.totalUpvotes).toLocaleString()}
+        <div style="background:var(--bg-input); padding:12px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.72rem; color:var(--text-secondary);">Total Upvotes</div>
+          <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; color:var(--success); margin-top:4px;">
+            +${Number(u.totalUpvotes).toLocaleString()}
           </div>
         </div>
-        <div style="background:var(--bg-input); padding:12px; border-radius:10px; border:1px solid var(--border);">
-          <div style="font-size:0.75rem; color:var(--text-muted);">Total Post Downvotes</div>
-          <div style="font-size:1.25rem; font-weight:800; color:var(--danger); margin-top:4px;">
-            ▼ ${Number(u.totalDownvotes).toLocaleString()}
+        <div style="background:var(--bg-input); padding:12px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+          <div style="font-size:0.72rem; color:var(--text-secondary);">Total Downvotes</div>
+          <div style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; color:var(--danger); margin-top:4px;">
+            -${Number(u.totalDownvotes).toLocaleString()}
           </div>
         </div>
       </div>
 
-      <!-- UPDATE AVATAR / ADMIN LOGO -->
-      <details style="margin-top:14px; background:var(--bg-input); padding:10px 12px; border-radius:10px; border:1px solid var(--border);">
-        <summary style="cursor:pointer; font-size:0.82rem; font-weight:600; color:var(--text-muted);">
-          ⚙️ Edit Profile Picture ${u.isAdmin ? ' & Enclave Admin Logo' : ''}
+      <details style="margin-top:12px; background:var(--bg-input); padding:10px 14px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+        <summary style="cursor:pointer; font-size:0.78rem; font-weight:600; color:var(--text-secondary);">
+          Edit Channel Settings
         </summary>
-        <div class="grid-2" style="margin-top:10px;">
+        <div class="grid-2" style="margin-top:12px;">
           <div class="form-group">
-            <label>New Display Name</label>
+            <label>Display Name</label>
             <input type="text" id="editDisplayName" value="${escapeHtml(u.displayName)}" />
           </div>
           <div class="form-group">
-            <label>Upload New Profile Picture</label>
-            <input type="file" id="editAvatarFile" accept="image/*" />
+            <label>Update Avatar</label>
+            <label class="upload-dropzone">
+              ${ICONS.upload} <span id="editAvatarLabel">Choose New Image</span>
+              <input type="file" id="editAvatarFile" accept="image/*" onchange="document.getElementById('editAvatarLabel').textContent = this.files[0] ? this.files[0].name : 'Choose New Image'" />
+            </label>
           </div>
-          ${u.isAdmin ? `
-            <div class="form-group">
-              <label>Upload Enclave Admin Hub Logo</label>
-              <input type="file" id="editAdminLogoFile" accept="image/*" />
-            </div>
-          ` : ''}
         </div>
-        <button class="btn btn-primary btn-sm" onclick="saveProfileChanges()">Save Profile Changes</button>
+        <button class="btn btn-primary btn-sm" onclick="saveProfileChanges()">Save Changes</button>
       </details>
     </div>
 
-    <!-- ACCOUNT ACTIVATORS FOR METRO TV, PUNT, KNOKNOX -->
     <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:6px;">⚡ Platform Account Activators</h3>
-      <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">
-        Activate your channel on each network below to unlock posting in that network. Every post you publish on any network automatically saves a copy to your Main Profile below.
-      </p>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+        <h3 style="font-size:0.9rem; font-weight:700;">Connected Networks</h3>
+        <span style="font-size:0.72rem; color:var(--text-secondary);">Toggle syndication & posting access</span>
+      </div>
       <div class="grid-3">
         ${['METROTV', 'PUNT', 'KNOKNOX'].map(key => {
           const spec = PLATFORM_SPECS[key];
           const isActive = key === 'METROTV' ? u.metroActive : (key === 'PUNT' ? u.puntActive : u.knoknoxActive);
           return `
-            <div style="background:var(--bg-input); border:1px solid var(--border); padding:12px; border-radius:12px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+            <div style="background:var(--bg-input); border:1px solid var(--border-subtle); padding:12px; border-radius:var(--radius-md); display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${LOGO_CONFIG[spec.logoKey]}" style="width:34px;height:34px;border-radius:8px;object-fit:cover;" alt="${spec.name}" />
+                <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:30px;height:30px;border-radius:6px;object-fit:cover;" alt="" onerror="this.src=FALLBACK_AVATAR" />
                 <div>
-                  <div style="font-weight:800; font-size:0.9rem;">${spec.name}</div>
-                  <div style="font-size:0.72rem; color:${isActive ? 'var(--success)' : 'var(--text-muted)'};">
-                    ${isActive ? '● Channel Active' : '○ Not Activated'}
+                  <div style="font-weight:700; font-size:0.84rem;">${spec.name}</div>
+                  <div style="font-family:var(--font-mono); font-size:0.68rem; color:${isActive ? 'var(--success)' : 'var(--text-dim)'};">
+                    ${isActive ? 'ACTIVE' : 'INACTIVE'}
                   </div>
                 </div>
               </div>
               <div style="display:flex; gap:6px;">
                 <button class="btn btn-sm ${isActive ? 'btn-outline' : spec.btnClass}" style="flex:1;" onclick="togglePlatformActivator('${key}')">
-                  ${isActive ? 'Deactivate' : 'Activate ' + spec.name}
+                  ${isActive ? 'Disable' : 'Enable'}
                 </button>
-                ${isActive ? `<button class="btn btn-sm btn-outline" onclick="navigate('${key.toLowerCase()}')">Go →</button>` : ''}
+                ${isActive ? `<button class="btn btn-sm btn-outline" onclick="navigate('${key.toLowerCase()}')">Open</button>` : ''}
               </div>
             </div>
           `;
@@ -1165,46 +1368,40 @@ function renderProfileView() {
       </div>
     </div>
 
-    <!-- INCOMING CONNECTION REQUESTS -->
-    <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:10px;">🤝 Incoming Connection Requests (${incomingRequests.length})</h3>
-      ${incomingRequests.length === 0 ? `
-        <p style="font-size:0.82rem; color:var(--text-muted);">No pending connection requests right now.</p>
-      ` : `
+    ${incomingRequests.length > 0 ? `
+      <div class="card">
+        <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Connection Requests (${incomingRequests.length})</h3>
         <div class="grid-2">
           ${incomingRequests.map(req => {
-            const sender = STATE.users.find(x => x.username.toLowerCase() === req.requester.toLowerCase()) || { username: req.requester, displayName: req.requester, profilePic: LOGO_CONFIG.ENCLAVE_HUB_LOGO };
+            const sender = STATE.users.find(x => x.username.toLowerCase() === req.requester.toLowerCase()) || { username: req.requester, displayName: req.requester, profilePic: FALLBACK_AVATAR };
             return `
-              <div style="background:var(--bg-input); padding:10px 12px; border-radius:10px; border:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div style="background:var(--bg-input); padding:10px 12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
                 <div style="display:flex; align-items:center; gap:10px;">
-                  <img src="${escapeHtml(sender.profilePic)}" class="avatar" alt="" />
+                  <img src="${escapeHtml(fixMediaUrl(sender.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
                   <div>
-                    <div style="font-weight:700; font-size:0.88rem;">${escapeHtml(sender.displayName)}</div>
-                    <div style="font-size:0.74rem; color:var(--text-muted);">@${escapeHtml(sender.username)}</div>
+                    <div style="font-weight:700; font-size:0.84rem;">${escapeHtml(sender.displayName)}</div>
+                    <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">@${escapeHtml(sender.username)}</div>
                   </div>
                 </div>
-                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <div style="display:flex; gap:6px;">
                   <button class="btn btn-success btn-sm" onclick="respondConnection('${req.connId}', 'ACCEPTED')">Accept</button>
-                  <button class="btn btn-outline btn-sm" onclick="respondConnection('${req.connId}', 'DENIED')">Deny</button>
+                  <button class="btn btn-outline btn-sm" onclick="respondConnection('${req.connId}', 'DENIED')">Ignore</button>
                   <button class="btn btn-danger btn-sm" onclick="blockUserAction('${sender.username}')">Block</button>
                 </div>
               </div>
             `;
           }).join('')}
         </div>
-      `}
-    </div>
+      </div>
+    ` : ''}
 
-    <!-- ALL MY POSTS (CROSS-POSTED ARCHIVE ON MAIN PROFILE) -->
-    <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:10px;">📼 My Cross-Platform Feed (${myPosts.length} Posts)</h3>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-secondary);">
+        Published Activity (${myPosts.length})
+      </div>
       ${myPosts.length === 0 ? `
-        <p style="font-size:0.82rem; color:var(--text-muted);">You haven't posted on Metro TV, PUNT, or KnokNox yet.</p>
-      ` : `
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          ${myPosts.map(p => renderPostCardHTML(p)).join('')}
-        </div>
-      `}
+        <div class="card"><p style="font-size:0.82rem; color:var(--text-secondary);">No posts published yet.</p></div>
+      ` : myPosts.map(p => renderPostCardHTML(p)).join('')}
     </div>
   `;
 }
@@ -1212,27 +1409,24 @@ function renderProfileView() {
 async function saveProfileChanges() {
   const displayName = document.getElementById('editDisplayName').value.trim();
   const avatarInput = document.getElementById('editAvatarFile');
-  const adminLogoInput = document.getElementById('editAdminLogoFile');
 
   let profilePic = '';
-  let adminLogo = '';
   if (avatarInput && avatarInput.files && avatarInput.files[0]) {
-    profilePic = await fileToDataUrl(avatarInput.files[0]);
-  }
-  if (adminLogoInput && adminLogoInput.files && adminLogoInput.files[0]) {
-    adminLogo = await fileToDataUrl(adminLogoInput.files[0]);
+    showLoading('Optimizing Avatar');
+    const resized = await autoResizeImageFile(avatarInput.files[0], 240, 240, 0.78);
+    profilePic = resized.dataUrl;
+    hideLoading();
   }
 
   const res = await apiCall({
     action: 'updateProfile',
     username: STATE.currentUser.username,
     displayName,
-    profilePic,
-    adminLogo
-  });
+    profilePic
+  }, 'Saving Profile');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
-  showToast('Profile updated!');
+  showToast('Profile saved.');
 }
 
 async function togglePlatformActivator(platformKey) {
@@ -1240,14 +1434,11 @@ async function togglePlatformActivator(platformKey) {
     action: 'togglePlatform',
     username: STATE.currentUser.username,
     platform: platformKey
-  });
+  }, 'Updating Network Access');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
 }
 
-/**
- * 6C. SOCIAL MEDIA PLATFORM VIEW (METRO TV, PUNT, KNOKNOX)
- */
 function renderPlatformView(platformKey) {
   const spec = PLATFORM_SPECS[platformKey];
   const u = STATE.currentUser;
@@ -1259,69 +1450,67 @@ function renderPlatformView(platformKey) {
   const platformPosts = STATE.posts.filter(p => p.platform === platformKey && p.status === 'ACTIVE');
 
   return `
-    <!-- PLATFORM BANNER -->
-    <div class="card" style="border-left: 4px solid ${platformKey==='METROTV'?'var(--metro-red)':platformKey==='PUNT'?'var(--punt-green)':'var(--knok-cyan)'};">
+    <!-- SLEEK NETWORK HEADER + COLLAPSIBLE STUDIO TRIGGER -->
+    <div class="card" style="padding:14px 18px; border-top:2px solid ${spec.accentColor};">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
         <div style="display:flex; align-items:center; gap:12px;">
-          <img src="${LOGO_CONFIG[spec.logoKey]}" style="width:48px;height:48px;border-radius:12px;object-fit:cover;" alt="${spec.name}" />
+          <img src="${fixMediaUrl(LOGO_CONFIG[spec.logoKey]) || FALLBACK_AVATAR}" style="width:40px;height:40px;border-radius:9px;object-fit:cover;" alt="" onerror="this.src=FALLBACK_AVATAR" />
           <div>
-            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-              <h2 style="font-size:1.25rem;">${spec.name}</h2>
-              <span class="badge ${spec.badgeClass}">Max Upload: ${spec.maxDurationSec / 60} Min</span>
-              <span class="badge">Optimal Res: ${spec.bestResolution}</span>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <h2 style="font-size:1.1rem; font-weight:800;">${spec.name}</h2>
+              <span class="badge ${spec.badgeClass}">${spec.maxDurationSec / 60}m Max</span>
             </div>
-            <p style="font-size:0.78rem; color:var(--text-muted); margin-top:3px;">${spec.tagline}</p>
+            <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">${spec.sub}</p>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- POST COMPOSER -->
-    <div class="card">
-      ${!isActivated ? `
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-          <div style="font-size:0.86rem; color:var(--text-muted);">
-            🔒 Your <strong>${spec.name}</strong> creator account is currently inactive. Activate it on your Main Profile to publish posts.
-          </div>
+        ${!isActivated ? `
           <button class="btn ${spec.btnClass} btn-sm" onclick="togglePlatformActivator('${platformKey}')">
-            ⚡ Activate ${spec.name} Now
+            Enable ${spec.name} Channel
           </button>
-        </div>
-      ` : `
-        <h3 style="font-size:0.95rem; margin-bottom:10px;">Create New ${spec.name} Post</h3>
-        <form onsubmit="submitPlatformPost(event, '${platformKey}')">
+        ` : `
+          <button class="btn ${STATE.composerOpen ? 'btn-outline' : spec.btnClass} btn-sm" onclick="STATE.composerOpen = !STATE.composerOpen; render();">
+            ${STATE.composerOpen ? 'Close Studio' : '+ Create Post'}
+          </button>
+        `}
+      </div>
+
+      ${isActivated && STATE.composerOpen ? `
+        <form onsubmit="submitPlatformPost(event, '${platformKey}')" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border-subtle);">
           <div class="form-group">
-            <textarea id="postCaptionInput" placeholder="Write your ${spec.name} title, stream announcement, or caption..." required></textarea>
+            <textarea id="postCaptionInput" placeholder="Write a title, caption, or broadcast update for ${spec.name}..." required></textarea>
           </div>
           <div class="grid-2">
             <div class="form-group">
-              <label>Upload Media (Image, Video MP4/WebM, or Audio MP3 — Max ${spec.maxDurationSec / 60} Min)</label>
-              <input type="file" accept="image/*,video/*,audio/*" onchange="handleMediaFileSelect(this, '${platformKey}')" />
-              <div id="mediaCheckStatus" style="font-size:0.74rem; color:var(--text-muted); margin-top:4px;">
-                Best Pixel Resolution: <strong>${spec.bestResolution}</strong>
-              </div>
+              <label>Media Attachment (Auto-Fit ${spec.bestResolution})</label>
+              <label class="upload-dropzone">
+                ${ICONS.upload} <span id="uploadFileNameLabel">Select Image, Video, or MP3</span>
+                <input type="file" accept="image/*,video/*,audio/*" onchange="document.getElementById('uploadFileNameLabel').textContent = this.files[0] ? this.files[0].name : 'Select Media'; handleMediaFileSelect(this, '${platformKey}')" />
+              </label>
+              <div id="mediaCheckStatus" style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary); margin-top:4px;"></div>
+              <div id="mediaLivePreviewBox" class="post-media-box" style="display:none; margin-top:8px; max-height:200px;"></div>
             </div>
             <div class="form-group">
-              <label>Or Paste Direct Media URL (Image / MP4 / MP3)</label>
+              <label>External Media Link (Optional)</label>
               <input type="url" id="postDirectMediaUrl" placeholder="https://..." />
               <select id="postDirectMediaType" style="margin-top:6px;">
-                <option value="image">URL Type: Image</option>
-                <option value="video">URL Type: Video (MP4/WebM)</option>
-                <option value="audio">URL Type: Audio (MP3)</option>
+                <option value="image">Link Type: Image</option>
+                <option value="video">Link Type: Video (MP4/WebM)</option>
+                <option value="audio">Link Type: Audio (MP3)</option>
               </select>
             </div>
           </div>
-          <button type="submit" class="btn ${spec.btnClass}">
-            🚀 Publish to ${spec.name} & Main Profile (Generative Tier ${u.tier}: ${u.multiplier}x)
-          </button>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:4px;">
+            <span class="badge tier">Active Reach Multiplier: ${u.multiplier}x</span>
+            <button type="submit" class="btn ${spec.btnClass}">Post to ${spec.name}</button>
+          </div>
         </form>
-      `}
+      ` : ''}
     </div>
 
-    <!-- GLOBAL PLATFORM FEED -->
     <div style="display:flex; flex-direction:column; gap:12px;">
       ${platformPosts.length === 0 ? `
-        <div class="card"><p style="font-size:0.85rem; color:var(--text-muted);">No posts on ${spec.name} yet. Be the first creator to drop content!</p></div>
+        <div class="card"><p style="font-size:0.82rem; color:var(--text-secondary);">No broadcasts on ${spec.name} yet.</p></div>
       ` : platformPosts.map(p => renderPostCardHTML(p)).join('')}
     </div>
   `;
@@ -1336,7 +1525,7 @@ async function submitPlatformPost(e, platformKey) {
   let mediaUrl = STATE.pendingMedia.dataUrl;
   let mediaType = STATE.pendingMedia.mediaType;
   let durationSec = STATE.pendingMedia.durationSec;
-  let resolution = STATE.pendingMedia.resolution || PLATFORM_SPECS[platformKey].bestResolution;
+  let resolution = STATE.pendingMedia.resolution || '';
 
   if (!mediaUrl && directUrl) {
     mediaUrl = directUrl;
@@ -1352,89 +1541,86 @@ async function submitPlatformPost(e, platformKey) {
     mediaType,
     durationSec,
     resolution
-  });
+  }, 'Publishing Post');
+
   if (!res.ok) return showToast(res.error);
-  STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: 'Standard' };
+  STATE.composerOpen = false;
+  STATE.pendingMedia = { dataUrl: '', mediaType: 'none', durationSec: 0, resolution: '' };
   ingestBootstrap(res);
-  showToast(`Published on ${PLATFORM_SPECS[platformKey].name}! Generative engagement applied.`);
+  showToast(`Posted to ${PLATFORM_SPECS[platformKey].name}`);
 }
 
-/**
- * Shared Post Card Renderer (Corner Avatar/Name, Upvote/Downvote, Share, Report, OP Profile Click)
- */
 function renderPostCardHTML(p) {
   const op = STATE.users.find(u => u.username.toLowerCase() === p.author.toLowerCase()) || {
     username: p.author,
     displayName: p.author,
-    profilePic: LOGO_CONFIG.ENCLAVE_HUB_LOGO,
+    profilePic: FALLBACK_AVATAR,
     verified: false,
     tierLabel: 'Tier 1'
   };
   const spec = PLATFORM_SPECS[p.platform] || PLATFORM_SPECS.METROTV;
   const originalPost = p.sharedFromId ? STATE.posts.find(x => x.postId === p.sharedFromId) : null;
+  const cleanMediaUrl = fixMediaUrl(p.mediaUrl);
 
   return `
     <article class="post-card" id="post-${escapeHtml(p.postId)}">
       <div class="post-header">
-        <!-- Corner OP Avatar + Name (Click to inspect OP Profile & all their posts) -->
-        <div class="post-author" onclick="openOPProfileModal('${escapeHtml(op.username)}')" title="Click to inspect @${escapeHtml(op.username)}'s full profile & posts">
-          <img src="${escapeHtml(op.profilePic)}" class="avatar" alt="${escapeHtml(op.displayName)}" />
+        <div class="post-author" onclick="openOPProfileModal('${escapeHtml(op.username)}')">
+          <img src="${escapeHtml(fixMediaUrl(op.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
           <div>
             <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-              <span style="font-weight:800; font-size:0.92rem;">${escapeHtml(op.displayName)}</span>
-              ${op.verified ? `<span class="badge verified">✓</span>` : ''}
+              <span style="font-weight:700; font-size:0.88rem; color:#fff;">${escapeHtml(op.displayName)}</span>
+              ${op.verified ? `<span class="badge verified" style="padding:1px 5px;">✓</span>` : ''}
               <span class="badge tier">${escapeHtml(op.tierLabel)}</span>
             </div>
-            <div style="font-size:0.74rem; color:var(--text-muted);">
+            <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-dim); margin-top:1px;">
               @${escapeHtml(op.username)} • ${formatTime(p.createdAt)}
             </div>
           </div>
         </div>
 
-        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:6px;">
           <span class="badge ${spec.badgeClass}">${spec.name}</span>
-          ${p.resolution ? `<span class="badge">${escapeHtml(p.resolution)}</span>` : ''}
-          ${p.durationSec > 0 ? `<span class="badge">⏱ ${p.durationSec}s</span>` : ''}
+          ${p.durationSec > 0 ? `<span class="badge">${p.durationSec}s</span>` : ''}
         </div>
       </div>
 
       ${p.sharedFromId ? `
         <div class="shared-embed">
-          🔁 Shared from <strong>@${escapeHtml(p.sharedFromAuthor)}</strong> •
-          <a href="#post-${escapeHtml(p.sharedFromId)}" onclick="openOPProfileModal('${escapeHtml(p.sharedFromAuthor)}')" style="color:var(--knok-cyan); text-decoration:underline;">
-            View Original Post (${escapeHtml(p.sharedFromId)})
-          </a>
-          ${originalPost ? `<div style="margin-top:4px; color:var(--text-main);">"${escapeHtml(originalPost.caption)}"</div>` : ''}
+          Reposted from <a href="javascript:void(0)" onclick="openOPProfileModal('${escapeHtml(p.sharedFromAuthor)}')" style="color:#fff; font-weight:700; text-decoration:underline;">@${escapeHtml(p.sharedFromAuthor)}</a>
+          ${originalPost ? `<div style="margin-top:4px; color:var(--text-secondary);">"${escapeHtml(originalPost.caption)}"</div>` : ''}
         </div>
       ` : ''}
 
       <div class="post-caption">${escapeHtml(p.caption)}</div>
 
-      ${p.mediaUrl && p.mediaType === 'image' ? `
-        <div class="post-media-box"><img src="${escapeHtml(p.mediaUrl)}" alt="Post Attachment" loading="lazy" /></div>
+      ${cleanMediaUrl && p.mediaType === 'image' ? `
+        <div class="post-media-box">
+          <img src="${escapeHtml(cleanMediaUrl)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" />
+        </div>
       ` : ''}
-      ${p.mediaUrl && p.mediaType === 'video' ? `
-        <div class="post-media-box"><video src="${escapeHtml(p.mediaUrl)}" controls playsinline></video></div>
+      ${cleanMediaUrl && p.mediaType === 'video' ? `
+        <div class="post-media-box"><video src="${escapeHtml(cleanMediaUrl)}" controls playsinline></video></div>
       ` : ''}
-      ${p.mediaUrl && p.mediaType === 'audio' ? `
-        <div class="post-media-box"><audio src="${escapeHtml(p.mediaUrl)}" controls></audio></div>
+      ${cleanMediaUrl && p.mediaType === 'audio' ? `
+        <div class="post-media-box"><audio src="${escapeHtml(cleanMediaUrl)}" controls></audio></div>
       ` : ''}
 
       <div class="post-actions">
-        <button class="btn btn-sm ${p.myVote === 'UP' ? 'btn-success' : 'btn-outline'}" onclick="voteOnPost('${p.postId}', 'UP')">
-          ▲ Upvote (${Number(p.upvotes).toLocaleString()})
+        <button type="button" class="btn btn-sm ${p.myVote === 'UP' ? 'btn-success' : 'btn-outline'}" onclick="voteOnPost('${escapeHtml(p.postId)}', 'UP')">
+          ${ICONS.up} <span>${Number(p.upvotes).toLocaleString()}</span>
         </button>
-        <button class="btn btn-sm ${p.myVote === 'DOWN' ? 'btn-danger' : 'btn-outline'}" onclick="voteOnPost('${p.postId}', 'DOWN')">
-          ▼ Downvote (${Number(p.downvotes).toLocaleString()})
+        <button type="button" class="btn btn-sm ${p.myVote === 'DOWN' ? 'btn-danger' : 'btn-outline'}" onclick="voteOnPost('${escapeHtml(p.postId)}', 'DOWN')">
+          ${ICONS.down} <span>${Number(p.downvotes).toLocaleString()}</span>
         </button>
-        <button class="btn btn-sm btn-outline" onclick="sharePostAsMyOwn('${p.postId}')">
-          🔁 Repost
+        <button type="button" class="btn btn-sm btn-outline" onclick="sharePostAsMyOwn('${escapeHtml(p.postId)}')">
+          ${ICONS.repost} <span>Repost</span>
         </button>
-        <button class="btn btn-sm btn-outline" onclick="openShareToChatModal('${p.postId}')">
-          💬 Send to Chat
+        <button type="button" class="btn btn-sm btn-outline" onclick="openShareToChatModal('${escapeHtml(p.postId)}')">
+          ${ICONS.share} <span>Send</span>
         </button>
-        <button class="btn btn-sm btn-danger" style="margin-left:auto;" onclick="openReportModal('${p.postId}')">
-          🚩 Report
+        <button type="button" class="btn btn-sm btn-outline" style="margin-left:auto; color:var(--text-dim);" onclick="openReportModal('${escapeHtml(p.postId)}')" title="Report Post">
+          ${ICONS.flag}
         </button>
       </div>
     </article>
@@ -1442,13 +1628,42 @@ function renderPostCardHTML(p) {
 }
 
 async function voteOnPost(postId, voteType) {
+  if (STATE.isBusy) return;
+  const targetPost = STATE.posts.find(p => String(p.postId) === String(postId));
+  if (!targetPost) return;
+
   const res = await apiCall({
     action: 'votePost',
-    postId,
+    postId: postId,
     username: STATE.currentUser.username,
-    voteType
-  });
-  if (res.ok) ingestBootstrap(res);
+    voteType: voteType
+  }, 'Updating Vote');
+
+  if (!res || !res.ok) return showToast((res && res.error) ? res.error : 'Vote failed');
+
+  if (res.fastVote) {
+    const prevUp = targetPost.upvotes;
+    const prevDown = targetPost.downvotes;
+    targetPost.upvotes = res.upvotes;
+    targetPost.downvotes = res.downvotes;
+    targetPost.myVote = res.myVote;
+
+    const deltaUp = res.upvotes - prevUp;
+    const deltaDown = res.downvotes - prevDown;
+    const authorObj = STATE.users.find(u => u.username.toLowerCase() === targetPost.author.toLowerCase());
+    if (authorObj) {
+      authorObj.totalUpvotes = Math.max(0, (authorObj.totalUpvotes || 0) + deltaUp);
+      authorObj.totalDownvotes = Math.max(0, (authorObj.totalDownvotes || 0) + deltaDown);
+    }
+    if (STATE.currentUser.username.toLowerCase() === targetPost.author.toLowerCase() && authorObj) {
+      STATE.currentUser.totalUpvotes = authorObj.totalUpvotes;
+      STATE.currentUser.totalDownvotes = authorObj.totalDownvotes;
+    }
+    render();
+    if (STATE.openOPModalUser) openOPProfileModal(STATE.openOPModalUser);
+  } else if (res.currentUser) {
+    ingestBootstrap(res);
+  }
 }
 
 async function sharePostAsMyOwn(postId) {
@@ -1458,35 +1673,36 @@ async function sharePostAsMyOwn(postId) {
     action: 'createPost',
     author: STATE.currentUser.username,
     platform: orig.platform,
-    caption: `Shared @${orig.author}'s post: ${orig.caption}`,
+    caption: orig.caption,
     mediaUrl: orig.mediaUrl,
     mediaType: orig.mediaType,
     durationSec: orig.durationSec,
     resolution: orig.resolution,
     sharedFromId: orig.postId,
     sharedFromAuthor: orig.author
-  });
+  }, 'Reposting');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
-  showToast('Shared to your feed with link to original post!');
+  showToast('Reposted to your channel.');
 }
 
 function openReportModal(postId) {
+  STATE.openOPModalUser = null;
   const post = STATE.posts.find(p => p.postId === postId);
   if (!post) return;
   const box = document.getElementById('modalContent');
   box.innerHTML = `
-    <h3>🚩 Report Post to Enclave Admin</h3>
-    <p style="font-size:0.82rem; color:var(--text-muted);">
-      Reporting <strong>${escapeHtml(post.postId)}</strong> by <strong>@${escapeHtml(post.author)}</strong> on ${escapeHtml(post.platform)}.
+    <h3 style="font-size:1rem;">Report Content</h3>
+    <p style="font-size:0.78rem; color:var(--text-secondary);">
+      Flagging post by <strong>@${escapeHtml(post.author)}</strong> on ${escapeHtml(post.platform)} for Enclave Moderation review.
     </p>
     <div class="form-group">
-      <label>Reason for Report (e.g. Copyright Strike, Enclave NDA Leak, Stream Sniping, Harassment)</label>
-      <textarea id="reportReasonInput" placeholder="Describe the violation..."></textarea>
+      <label>Reason / Violation Details</label>
+      <textarea id="reportReasonInput" placeholder="Specify NDA breach, copyright claim, or rule violation..."></textarea>
     </div>
     <div style="display:flex; justify-content:flex-end; gap:8px;">
       <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-danger btn-sm" onclick="submitPostReport('${post.postId}')">Submit Report</button>
+      <button class="btn btn-danger btn-sm" onclick="submitPostReport('${escapeHtml(post.postId)}')">Submit Report</button>
     </div>
   `;
   document.getElementById('modalBackdrop').classList.add('open');
@@ -1494,20 +1710,20 @@ function openReportModal(postId) {
 
 async function submitPostReport(postId) {
   const reason = document.getElementById('reportReasonInput').value.trim();
-  if (!reason) return showToast('Please enter a reason.');
+  if (!reason) return showToast('Reason required.');
   const res = await apiCall({
     action: 'reportPost',
     postId,
     reporter: STATE.currentUser.username,
     reason
-  });
+  }, 'Submitting Report');
   if (!res.ok) return showToast(res.error);
   closeModal();
-  ingestBootstrap(res);
-  showToast('Report submitted to Enclave Admin.');
+  showToast('Report logged.');
 }
 
 function openOPProfileModal(username) {
+  STATE.openOPModalUser = username;
   const op = STATE.users.find(u => u.username.toLowerCase() === username.toLowerCase());
   if (!op) return;
   const opPosts = STATE.posts.filter(p => p.author.toLowerCase() === username.toLowerCase() && (p.status === 'ACTIVE' || STATE.currentUser.isAdmin));
@@ -1515,36 +1731,33 @@ function openOPProfileModal(username) {
   box.innerHTML = `
     <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
       <div style="display:flex; align-items:center; gap:12px;">
-        <img src="${escapeHtml(op.profilePic)}" class="avatar-lg" style="width:56px;height:56px;" alt="" />
+        <img src="${escapeHtml(fixMediaUrl(op.profilePic) || FALLBACK_AVATAR)}" class="avatar-lg" style="width:52px;height:52px;" alt="" onerror="this.src=FALLBACK_AVATAR" />
         <div>
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-            <h3>${escapeHtml(op.displayName)}</h3>
-            ${op.verified ? `<span class="badge verified">✓ Verified</span>` : ''}
+            <h3 style="font-size:1rem;">${escapeHtml(op.displayName)}</h3>
+            ${op.verified ? `<span class="badge verified">✓</span>` : ''}
             <span class="badge tier">${escapeHtml(op.tierLabel)}</span>
           </div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">
-            @${escapeHtml(op.username)} • ${Number(op.followers).toLocaleString()} Followers • ▲ ${op.totalUpvotes} / ▼ ${op.totalDownvotes}
+          <div style="font-family:var(--font-mono); font-size:0.74rem; color:var(--text-secondary); margin-top:2px;">
+            @${escapeHtml(op.username)} • ${Number(op.followers).toLocaleString()} followers
           </div>
         </div>
       </div>
-      <button class="btn btn-outline btn-sm" onclick="closeModal()">✕ Close</button>
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>
     </div>
-    <hr style="border-color:var(--border); margin:6px 0;" />
-    <h4 style="font-size:0.9rem;">All Posts by @${escapeHtml(op.username)} (${opPosts.length})</h4>
+    <hr style="border:none; border-top:1px solid var(--border-subtle); margin:4px 0;" />
     <div style="display:flex; flex-direction:column; gap:10px;">
-      ${opPosts.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-muted);">No posts yet.</p>` : opPosts.map(p => renderPostCardHTML(p)).join('')}
+      ${opPosts.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No public posts.</p>` : opPosts.map(p => renderPostCardHTML(p)).join('')}
     </div>
   `;
   document.getElementById('modalBackdrop').classList.add('open');
 }
 
 function closeModal() {
+  STATE.openOPModalUser = null;
   document.getElementById('modalBackdrop').classList.remove('open');
 }
 
-/**
- * 6D. SEARCH OTHERS PAGE (Shows Profile Name, Pic, Connection Request, and ONLY Latest Post in Each of the 3 Socials)
- */
 function renderSearchView() {
   const q = STATE.searchQuery.toLowerCase().trim();
   const otherUsers = STATE.users.filter(u => {
@@ -1554,11 +1767,11 @@ function renderSearchView() {
 
   return `
     <div class="card">
-      <h2 style="font-size:1.15rem; margin-bottom:6px;">🔍 Search Enclave Creators</h2>
-      <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:12px;">
-        Browse creators, send Connection Requests, and preview their single latest post on Metro TV, PUNT, and KnokNox.
-      </p>
-      <input type="text" placeholder="Search by username or display name..." value="${escapeHtml(STATE.searchQuery)}" oninput="STATE.searchQuery=this.value; render();" />
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+        <h2 style="font-size:1rem; font-weight:700;">Creator Directory</h2>
+        <span style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary);">${otherUsers.length} Profiles</span>
+      </div>
+      <input type="text" placeholder="Filter by handle or channel name..." value="${escapeHtml(STATE.searchQuery)}" oninput="STATE.searchQuery=this.value; render();" />
     </div>
 
     <div class="grid-2">
@@ -1566,59 +1779,51 @@ function renderSearchView() {
         const isMe = u.username.toLowerCase() === STATE.currentUser.username.toLowerCase();
         const connStatus = getConnectionStatus(STATE.currentUser.username, u.username);
 
-        // Strictly get ONLY the single latest active post per platform
         const latestMetro = STATE.posts.find(p => p.author.toLowerCase() === u.username.toLowerCase() && p.platform === 'METROTV' && p.status === 'ACTIVE');
         const latestPunt = STATE.posts.find(p => p.author.toLowerCase() === u.username.toLowerCase() && p.platform === 'PUNT' && p.status === 'ACTIVE');
         const latestKnok = STATE.posts.find(p => p.author.toLowerCase() === u.username.toLowerCase() && p.platform === 'KNOKNOX' && p.status === 'ACTIVE');
 
         return `
-          <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+          <div class="card" style="display:flex; flex-direction:column; gap:12px;">
             <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
               <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="openOPProfileModal('${escapeHtml(u.username)}')">
-                <img src="${escapeHtml(u.profilePic)}" class="avatar" alt="" />
+                <img src="${escapeHtml(fixMediaUrl(u.profilePic) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
                 <div>
                   <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-                    <span style="font-weight:800;">${escapeHtml(u.displayName)}</span>
+                    <span style="font-weight:700; font-size:0.88rem;">${escapeHtml(u.displayName)}</span>
                     ${u.verified ? `<span class="badge verified">✓</span>` : ''}
                     <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
                   </div>
-                  <div style="font-size:0.75rem; color:var(--text-muted);">
-                    @${escapeHtml(u.username)} • ${Number(u.followers).toLocaleString()} Followers
+                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">
+                    @${escapeHtml(u.username)} • ${Number(u.followers).toLocaleString()}
                   </div>
                 </div>
               </div>
 
               ${!isMe ? `
-                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <div style="display:flex; gap:6px;">
                   ${connStatus === 'CONNECTED' ? `<span class="badge verified">Connected</span>` :
-                    connStatus === 'PENDING' ? `<span class="badge">Request Pending</span>` :
-                    connStatus === 'BLOCKED' ? `<span class="badge" style="background:var(--danger);">Blocked</span>` :
-                    `<button class="btn btn-primary btn-sm" onclick="sendConnection('${escapeHtml(u.username)}')">+ Connect</button>`
+                    connStatus === 'PENDING' ? `<span class="badge">Pending</span>` :
+                    connStatus === 'BLOCKED' ? `<span class="badge" style="color:var(--danger);">Blocked</span>` :
+                    `<button class="btn btn-primary btn-sm" onclick="sendConnection('${escapeHtml(u.username)}')">Connect</button>`
                   }
-                  ${connStatus !== 'BLOCKED' ? `<button class="btn btn-danger btn-sm" onclick="blockUserAction('${escapeHtml(u.username)}')">Block</button>` : ''}
+                  ${connStatus !== 'BLOCKED' ? `<button class="btn btn-outline btn-sm" onclick="blockUserAction('${escapeHtml(u.username)}')">Block</button>` : ''}
                 </div>
               ` : `<span class="badge">You</span>`}
             </div>
 
-            <!-- Latest Post in Each of the 3 Socials -->
-            <div style="display:flex; flex-direction:column; gap:6px; font-size:0.78rem; background:var(--bg-input); padding:10px; border-radius:10px; border:1px solid var(--border);">
-              <div>
-                <span class="badge metro">METRO TV Latest:</span>
-                <span style="color:var(--text-muted); margin-left:4px;">
-                  ${latestMetro ? escapeHtml(latestMetro.caption.slice(0, 90)) : 'No post yet'}
-                </span>
+            <div style="display:flex; flex-direction:column; gap:6px; font-size:0.76rem; background:var(--bg-input); padding:10px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                <span class="badge metro" style="margin-right:6px;">Metro</span>
+                <span style="color:var(--text-secondary);">${latestMetro ? escapeHtml(latestMetro.caption) : '—'}</span>
               </div>
-              <div>
-                <span class="badge punt">PUNT Latest:</span>
-                <span style="color:var(--text-muted); margin-left:4px;">
-                  ${latestPunt ? escapeHtml(latestPunt.caption.slice(0, 90)) : 'No post yet'}
-                </span>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                <span class="badge punt" style="margin-right:6px;">PUNT</span>
+                <span style="color:var(--text-secondary);">${latestPunt ? escapeHtml(latestPunt.caption) : '—'}</span>
               </div>
-              <div>
-                <span class="badge knoknox">KNOKNOX Latest:</span>
-                <span style="color:var(--text-muted); margin-left:4px;">
-                  ${latestKnok ? escapeHtml(latestKnok.caption.slice(0, 90)) : 'No post yet'}
-                </span>
+              <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                <span class="badge knoknox" style="margin-right:6px;">Knok</span>
+                <span style="color:var(--text-secondary);">${latestKnok ? escapeHtml(latestKnok.caption) : '—'}</span>
               </div>
             </div>
           </div>
@@ -1643,33 +1848,29 @@ function getConnectionStatus(me, other) {
   if (!conn) return 'NONE';
   if (conn.status === 'ACCEPTED') return 'CONNECTED';
   if (conn.status === 'PENDING') return 'PENDING';
-  return 'NONE'; // DENIED allows re-sending!
+  return 'NONE';
 }
 
 async function sendConnection(receiver) {
-  const res = await apiCall({ action: 'sendConnectionRequest', requester: STATE.currentUser.username, receiver });
+  const res = await apiCall({ action: 'sendConnectionRequest', requester: STATE.currentUser.username, receiver }, 'Sending Request');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
-  showToast('Connection request sent to @' + receiver);
+  showToast('Request sent to @' + receiver);
 }
 
 async function respondConnection(connId, decision) {
-  const res = await apiCall({ action: 'respondConnectionRequest', connId, username: STATE.currentUser.username, decision });
+  const res = await apiCall({ action: 'respondConnectionRequest', connId, username: STATE.currentUser.username, decision }, 'Updating Connection');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
-  showToast('Connection ' + decision.toLowerCase());
 }
 
 async function blockUserAction(blocked) {
-  const res = await apiCall({ action: 'blockUser', blocker: STATE.currentUser.username, blocked });
+  const res = await apiCall({ action: 'blockUser', blocker: STATE.currentUser.username, blocked }, 'Blocking User');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
-  showToast('Blocked @' + blocked + '. Only EnclaveAdmin can unblock.');
+  showToast('Blocked @' + blocked);
 }
 
-/**
- * 6E. CONNECTIONS / CHAT PAGE (DMs, Replies, Private Groups Max 5 Members, Image & Post Sharing)
- */
 function renderConnectionsView() {
   const me = STATE.currentUser.username.toLowerCase();
   const connectedUsers = STATE.connections
@@ -1696,73 +1897,70 @@ function renderConnectionsView() {
 
   return `
     <div class="chat-layout">
-      <!-- LEFT SIDEBAR: DMs & GROUPS (Max 5 Members) -->
-      <div class="card" style="display:flex; flex-direction:column; gap:12px;">
-        <h3 style="font-size:0.95rem;">💬 Direct Connections</h3>
-        <div style="display:flex; flex-direction:column; gap:6px;">
-          ${connectedUsers.length === 0 ? `<p style="font-size:0.76rem; color:var(--text-muted);">Accept a Connection Request or connect via Search first.</p>` :
+      <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+        <div style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; color:var(--text-secondary);">Direct Messages</div>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          ${connectedUsers.length === 0 ? `<p style="font-size:0.75rem; color:var(--text-dim);">No active connections.</p>` :
             connectedUsers.map(uName => `
               <button class="btn btn-sm ${STATE.activeChat.type==='DM' && STATE.activeChat.targetId===uName ? 'btn-primary' : 'btn-outline'}" style="justify-content:flex-start;" onclick="selectChat('DM', '${escapeHtml(uName)}')">
-                👤 @${escapeHtml(uName)}
+                @${escapeHtml(uName)}
               </button>
             `).join('')
           }
         </div>
 
-        <hr style="border-color:var(--border);" />
+        <hr style="border:none; border-top:1px solid var(--border-subtle); margin:4px 0;" />
         <div style="display:flex; align-items:center; justify-content:space-between;">
-          <h3 style="font-size:0.95rem;">👥 Private Groups (Max 5)</h3>
+          <span style="font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; color:var(--text-secondary);">Groups (Max 5)</span>
           <button class="btn btn-outline btn-sm" onclick="openCreateGroupModal()">+ New</button>
         </div>
-        <div style="display:flex; flex-direction:column; gap:6px;">
-          ${STATE.groups.length === 0 ? `<p style="font-size:0.76rem; color:var(--text-muted);">No groups yet.</p>` :
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          ${STATE.groups.length === 0 ? `<p style="font-size:0.75rem; color:var(--text-dim);">No groups created.</p>` :
             STATE.groups.map(g => `
               <button class="btn btn-sm ${STATE.activeChat.type==='GROUP' && STATE.activeChat.targetId===g.groupId ? 'btn-primary' : 'btn-outline'}" style="justify-content:flex-start;" onclick="selectChat('GROUP', '${escapeHtml(g.groupId)}')">
-                🔒 ${escapeHtml(g.groupName)} (${g.members.length}/5)
+                ${escapeHtml(g.groupName)} (${g.members.length}/5)
               </button>
             `).join('')
           }
         </div>
       </div>
 
-      <!-- RIGHT PANEL: ACTIVE CONVERSATION -->
       <div class="card" style="display:flex; flex-direction:column; gap:10px;">
         ${!STATE.activeChat.targetId ? `
-          <p style="font-size:0.85rem; color:var(--text-muted); margin:auto;">Select a connection or create a group chat to start messaging.</p>
+          <p style="font-size:0.82rem; color:var(--text-secondary); margin:auto;">Select a conversation to begin.</p>
         ` : `
-          <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:8px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
             <div>
-              <h3 style="font-size:1rem;">
+              <h3 style="font-size:0.95rem; font-weight:700;">
                 ${STATE.activeChat.type === 'GROUP'
-                  ? '🔒 Group: ' + escapeHtml((STATE.groups.find(g => g.groupId === STATE.activeChat.targetId) || {}).groupName || '')
-                  : '💬 Chat with @' + escapeHtml(STATE.activeChat.targetId)}
+                  ? escapeHtml((STATE.groups.find(g => g.groupId === STATE.activeChat.targetId) || {}).groupName || '')
+                  : '@' + escapeHtml(STATE.activeChat.targetId)}
               </h3>
               ${STATE.activeChat.type === 'GROUP' ? `
-                <div style="font-size:0.74rem; color:var(--text-muted);">
-                  Members: ${escapeHtml(((STATE.groups.find(g => g.groupId === STATE.activeChat.targetId) || {}).members || []).join(', '))}
+                <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">
+                  ${escapeHtml(((STATE.groups.find(g => g.groupId === STATE.activeChat.targetId) || {}).members || []).join(', '))}
                 </div>
               ` : ''}
             </div>
           </div>
 
           <div class="chat-messages" id="chatMessagesBox">
-            ${activeMsgs.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-muted); margin:auto;">No messages yet. Say hello!</p>` :
+            ${activeMsgs.length === 0 ? `<p style="font-size:0.78rem; color:var(--text-dim); margin:auto;">No messages in this channel.</p>` :
               activeMsgs.map(m => {
                 const isMine = m.sender.toLowerCase() === me;
                 const sharedPost = m.sharedPostId ? STATE.posts.find(p => p.postId === m.sharedPostId) : null;
                 return `
                   <div class="msg-bubble ${isMine ? 'mine' : ''}">
-                    <div style="display:flex; justify-content:space-between; gap:10px; font-size:0.72rem; color:var(--text-muted); margin-bottom:4px;">
-                      <strong>@${escapeHtml(m.sender)}</strong>
-                      <span style="cursor:pointer; color:var(--knok-cyan);" onclick="setReplyTarget('${escapeHtml(m.msgId)}', '${escapeHtml(m.sender)}: ${escapeHtml((m.text || 'Media').slice(0,40))}')">↩ Reply</span>
+                    <div style="display:flex; justify-content:space-between; gap:10px; font-family:var(--font-mono); font-size:0.68rem; color:var(--text-secondary); margin-bottom:4px;">
+                      <span>@${escapeHtml(m.sender)}</span>
+                      <span style="cursor:pointer; text-decoration:underline;" onclick="setReplyTarget('${escapeHtml(m.msgId)}', '${escapeHtml(m.sender)}: ${escapeHtml((m.text || 'Media').slice(0,40))}')">Reply</span>
                     </div>
-                    ${m.replyPreview ? `<div class="reply-quote">↩ ${escapeHtml(m.replyPreview)}</div>` : ''}
-                    ${m.text ? `<div style="word-break:break-word;">${escapeHtml(m.text)}</div>` : ''}
-                    ${m.mediaUrl ? `<img src="${escapeHtml(m.mediaUrl)}" style="max-width:220px; border-radius:8px; margin-top:6px; display:block;" alt="Chat Image" />` : ''}
+                    ${m.replyPreview ? `<div class="reply-quote">${escapeHtml(m.replyPreview)}</div>` : ''}
+                    ${m.text ? `<div>${escapeHtml(m.text)}</div>` : ''}
+                    ${m.mediaUrl ? `<img src="${escapeHtml(fixMediaUrl(m.mediaUrl))}" style="max-width:220px; border-radius:6px; margin-top:6px; display:block;" alt="" />` : ''}
                     ${sharedPost ? `
                       <div class="shared-embed" style="margin-top:6px;">
-                        📌 Shared Post from <strong>@${escapeHtml(sharedPost.author)}</strong> (${escapeHtml(sharedPost.platform)}):
-                        <div>"${escapeHtml(sharedPost.caption.slice(0, 100))}"</div>
+                        Shared from <strong>@${escapeHtml(sharedPost.author)}</strong>: "${escapeHtml(sharedPost.caption.slice(0, 90))}"
                       </div>
                     ` : ''}
                   </div>
@@ -1772,21 +1970,19 @@ function renderConnectionsView() {
           </div>
 
           ${STATE.activeChat.replyPreview ? `
-            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--bg-input); padding:6px 10px; border-radius:8px; font-size:0.76rem;">
+            <div style="display:flex; align-items:center; justify-content:space-between; background:var(--bg-input); padding:6px 10px; border-radius:6px; font-size:0.74rem;">
               <span>Replying to: <strong>${escapeHtml(STATE.activeChat.replyPreview)}</strong></span>
-              <button class="btn btn-outline btn-sm" onclick="STATE.activeChat.replyToMsgId=''; STATE.activeChat.replyPreview=''; render();">✕</button>
+              <button class="btn btn-outline btn-sm" onclick="STATE.activeChat.replyToMsgId=''; STATE.activeChat.replyPreview=''; render();">Cancel</button>
             </div>
           ` : ''}
 
-          <form onsubmit="submitChatMessage(event)" style="display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; gap:8px;">
-              <input type="text" id="chatTextInput" placeholder="Write a message..." style="flex:1;" />
-              <button type="submit" class="btn btn-primary">Send</button>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-              <input type="file" id="chatImageInput" accept="image/*" style="font-size:0.75rem; max-width:230px;" />
-              <span style="font-size:0.73rem; color:var(--text-muted);">Attach image optional</span>
-            </div>
+          <form onsubmit="submitChatMessage(event)" style="display:flex; gap:8px; align-items:center;">
+            <label class="btn btn-outline" style="cursor:pointer; padding:9px 11px;" title="Attach Image">
+              ${ICONS.upload}
+              <input type="file" id="chatImageInput" accept="image/*" style="display:none;" onchange="showToast('Image attached: ' + (this.files[0] ? this.files[0].name : ''))" />
+            </label>
+            <input type="text" id="chatTextInput" placeholder="Message..." style="flex:1;" />
+            <button type="submit" class="btn btn-primary">Send</button>
           </form>
         `}
       </div>
@@ -1811,7 +2007,10 @@ async function submitChatMessage(e) {
   const imgInput = document.getElementById('chatImageInput');
   let mediaUrl = '';
   if (imgInput && imgInput.files && imgInput.files[0]) {
-    mediaUrl = await fileToDataUrl(imgInput.files[0]);
+    showLoading('Optimizing Image');
+    const resized = await autoResizeImageFile(imgInput.files[0], 420, 420, 0.72);
+    mediaUrl = resized.dataUrl;
+    hideLoading();
   }
   if (!text && !mediaUrl) return;
 
@@ -1824,7 +2023,7 @@ async function submitChatMessage(e) {
     mediaUrl,
     replyToMsgId: STATE.activeChat.replyToMsgId,
     replyPreview: STATE.activeChat.replyPreview
-  });
+  }, 'Sending');
   if (!res.ok) return showToast(res.error);
   STATE.activeChat.replyToMsgId = '';
   STATE.activeChat.replyPreview = '';
@@ -1832,22 +2031,20 @@ async function submitChatMessage(e) {
 }
 
 function openCreateGroupModal() {
+  STATE.openOPModalUser = null;
   const box = document.getElementById('modalContent');
   const candidates = STATE.users.filter(u => u.username.toLowerCase() !== STATE.currentUser.username.toLowerCase());
   box.innerHTML = `
-    <h3>👥 Create Private Group (Max 5 People Total)</h3>
-    <p style="font-size:0.78rem; color:var(--text-muted);">
-      Select up to 4 other creators (you + 4 = 5 max). Only group members can see or message this group.
-    </p>
+    <h3 style="font-size:1rem;">New Private Group (Max 5 Members)</h3>
     <div class="form-group">
       <label>Group Name</label>
-      <input type="text" id="newGroupName" placeholder="e.g. OTAY Esports Scrim Squad" />
+      <input type="text" id="newGroupName" placeholder="Group title" />
     </div>
     <div class="form-group">
-      <label>Select Members (Max 4 checkboxes)</label>
-      <div style="display:flex; flex-direction:column; gap:6px; max-height:180px; overflow-y:auto; padding:8px; background:var(--bg-input); border-radius:8px;">
+      <label>Select Up to 4 Members</label>
+      <div style="display:flex; flex-direction:column; gap:6px; max-height:180px; overflow-y:auto; padding:10px; background:var(--bg-input); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
         ${candidates.map(u => `
-          <label style="display:flex; align-items:center; gap:8px; color:var(--text-main); cursor:pointer;">
+          <label style="display:flex; align-items:center; gap:8px; color:var(--text-primary); cursor:pointer;">
             <input type="checkbox" class="group-member-check" value="${escapeHtml(u.username)}" />
             <span>${escapeHtml(u.displayName)} (@${escapeHtml(u.username)})</span>
           </label>
@@ -1856,7 +2053,7 @@ function openCreateGroupModal() {
     </div>
     <div style="display:flex; justify-content:flex-end; gap:8px;">
       <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary btn-sm" onclick="submitCreateGroup()">Create Group</button>
+      <button class="btn btn-primary btn-sm" onclick="submitCreateGroup()">Create</button>
     </div>
   `;
   document.getElementById('modalBackdrop').classList.add('open');
@@ -1865,22 +2062,20 @@ function openCreateGroupModal() {
 async function submitCreateGroup() {
   const groupName = document.getElementById('newGroupName').value.trim();
   const checked = Array.from(document.querySelectorAll('.group-member-check:checked')).map(el => el.value);
-  if (checked.length > 4) {
-    return showToast('Max 5 members total (you + up to 4 others)!');
-  }
+  if (checked.length > 4) return showToast('Maximum 5 members total.');
   const res = await apiCall({
     action: 'createGroup',
     creator: STATE.currentUser.username,
     groupName,
     members: [STATE.currentUser.username, ...checked]
-  });
+  }, 'Creating Group');
   if (!res.ok) return showToast(res.error);
   closeModal();
   ingestBootstrap(res);
-  showToast('Group created!');
 }
 
 function openShareToChatModal(postId) {
+  STATE.openOPModalUser = null;
   const me = STATE.currentUser.username.toLowerCase();
   const connectedUsers = STATE.connections
     .filter(c => c.status === 'ACCEPTED' && (c.requester.toLowerCase() === me || c.receiver.toLowerCase() === me))
@@ -1888,21 +2083,21 @@ function openShareToChatModal(postId) {
 
   const box = document.getElementById('modalContent');
   box.innerHTML = `
-    <h3>💬 Share Post to Connections / Group</h3>
+    <h3 style="font-size:1rem;">Forward Post to Chat</h3>
     <div class="form-group">
-      <label>Select Destination</label>
+      <label>Channel</label>
       <select id="shareChatDestination">
-        ${connectedUsers.map(u => `<option value="DM:${escapeHtml(u)}">DM: @${escapeHtml(u)}</option>`).join('')}
+        ${connectedUsers.map(u => `<option value="DM:${escapeHtml(u)}">@${escapeHtml(u)}</option>`).join('')}
         ${STATE.groups.map(g => `<option value="GROUP:${escapeHtml(g.groupId)}">Group: ${escapeHtml(g.groupName)}</option>`).join('')}
       </select>
     </div>
     <div class="form-group">
-      <label>Optional Comment</label>
-      <input type="text" id="shareChatComment" placeholder="Check out this post!" />
+      <label>Message (Optional)</label>
+      <input type="text" id="shareChatComment" placeholder="Add a note..." />
     </div>
     <div style="display:flex; justify-content:flex-end; gap:8px;">
       <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary btn-sm" onclick="confirmSharePostToChat('${postId}')">Send to Chat</button>
+      <button class="btn btn-primary btn-sm" onclick="confirmSharePostToChat('${escapeHtml(postId)}')">Send</button>
     </div>
   `;
   document.getElementById('modalBackdrop').classList.add('open');
@@ -1910,9 +2105,9 @@ function openShareToChatModal(postId) {
 
 async function confirmSharePostToChat(postId) {
   const dest = document.getElementById('shareChatDestination').value;
-  if (!dest) return showToast('Connect with a user or create a group first.');
+  if (!dest) return showToast('No active chat destination.');
   const [chatType, targetId] = dest.split(':');
-  const text = document.getElementById('shareChatComment').value.trim() || 'Shared a post with you:';
+  const text = document.getElementById('shareChatComment').value.trim() || 'Shared a post:';
   const res = await apiCall({
     action: 'sendMessage',
     sender: STATE.currentUser.username,
@@ -1920,127 +2115,148 @@ async function confirmSharePostToChat(postId) {
     targetId,
     text,
     sharedPostId: postId
-  });
+  }, 'Forwarding Post');
   if (!res.ok) return showToast(res.error);
   closeModal();
   ingestBootstrap(res);
-  showToast('Post shared to Connections!');
+  showToast('Sent.');
 }
 
-/**
- * 6F. ENCLAVE ADMIN PANEL (Strictly visible ONLY to EnclaveAdmin)
- */
 function renderAdminView() {
   return `
-    <div class="card" style="border-left:4px solid var(--enclave-gold);">
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <img src="${escapeHtml(STATE.currentUser.adminLogo || LOGO_CONFIG.ENCLAVE_HUB_LOGO)}" class="avatar" alt="Admin Logo" />
-          <div>
-            <h2 style="font-size:1.2rem; color:var(--enclave-gold);">🛡️ ENCLAVE ADMIN CONSOLE</h2>
-            <p style="font-size:0.78rem; color:var(--text-muted);">
-              Master Authority: Reports Moderation • NDA / Copyright Takedowns • Block List Unblocking • Full Audit History
-            </p>
-          </div>
+    <div class="card" style="border-top:2px solid var(--accent-enclave);">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <img src="${escapeHtml(fixMediaUrl(LOGO_CONFIG.ENCLAVE_HUB_LOGO) || FALLBACK_AVATAR)}" class="avatar" alt="" onerror="this.src=FALLBACK_AVATAR" />
+        <div>
+          <h2 style="font-size:1.05rem; font-weight:800; color:var(--accent-enclave);">ENCLAVE ADMINISTRATION</h2>
+          <p style="font-size:0.75rem; color:var(--text-secondary);">Brand Assets • Moderation Queue • Access Blocks • Audience Overrides</p>
         </div>
       </div>
     </div>
 
-    <!-- REPORTS MODERATION QUEUE -->
     <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:10px;">🚩 Submitted Post Reports (${STATE.reports.length})</h3>
-      ${STATE.reports.length === 0 ? `<p style="font-size:0.82rem; color:var(--text-muted);">No reports submitted.</p>` : `
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          ${STATE.reports.map(r => `
-            <div style="background:var(--bg-input); padding:12px; border-radius:10px; border:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-              <div>
-                <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-                  <span class="badge">${escapeHtml(r.platform)}</span>
-                  <strong>Post: ${escapeHtml(r.postId)}</strong> by <strong>@${escapeHtml(r.postAuthor)}</strong>
-                  <span class="badge" style="background:${r.status==='OPEN'?'var(--danger)':'#2d3a5e'};">${escapeHtml(r.status)}</span>
-                </div>
-                <div style="font-size:0.82rem; margin-top:4px;">
-                  Reported by <strong>@${escapeHtml(r.reporter)}</strong> — Reason: <em>"${escapeHtml(r.reason)}"</em>
-                </div>
-              </div>
-              <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="btn btn-danger btn-sm" onclick="adminExec('TAKEDOWN_POST', { postId: '${r.postId}', reason: 'Enclave NDA / Copyright Takedown: ' + '${escapeHtml(r.reason)}' })">
-                  ⚡ Take Down Post
-                </button>
-                <button class="btn btn-outline btn-sm" onclick="adminExec('IGNORE_REPORT', { reportId: '${r.reportId}' })">
-                  Ignore
-                </button>
-                <button class="btn btn-outline btn-sm" onclick="adminExec('DELETE_REPORT', { reportId: '${r.reportId}' })">
-                  🗑 Delete Report
-                </button>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      `}
-    </div>
-
-    <!-- BLOCK LIST MANAGER (Blocked users stay blocked until removed by Admin) -->
-    <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:10px;">🚫 Active Block List (${STATE.blocks.length})</h3>
-      ${STATE.blocks.length === 0 ? `<p style="font-size:0.82rem; color:var(--text-muted);">No blocked users in the system.</p>` : `
-        <div class="grid-2">
-          ${STATE.blocks.map(b => `
-            <div style="background:var(--bg-input); padding:10px 12px; border-radius:10px; border:1px solid var(--border); display:flex; align-items:center; justify-content:space-between;">
-              <div style="font-size:0.84rem;">
-                <strong>@${escapeHtml(b.blocker)}</strong> blocked <strong>@${escapeHtml(b.blocked)}</strong>
-              </div>
-              <button class="btn btn-success btn-sm" onclick="adminExec('UNBLOCK_USER', { blockId: '${b.blockId}' })">
-                Remove Block
-              </button>
-            </div>
-          `).join('')}
-        </div>
-      `}
-    </div>
-
-    <!-- CREATOR FOLLOWER / TIER ADJUSTER -->
-    <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:10px;">📈 Creator Follower & Tier Manager</h3>
+      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Network Brand Logos</h3>
       <div class="grid-2">
-        ${STATE.users.map(u => `
-          <div style="background:var(--bg-input); padding:10px 12px; border-radius:10px; border:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
-            <div>
-              <strong>@${escapeHtml(u.username)}</strong> <span class="badge tier">${escapeHtml(u.tierLabel)}</span>
-              <div style="font-size:0.75rem; color:var(--text-muted);">${Number(u.followers).toLocaleString()} followers</div>
+        ${[
+          { title: 'Enclave Hub Logo', key: 'ENCLAVE_HUB_LOGO', fId: 'logoFile_HUB', uId: 'logoUrl_HUB' },
+          { title: 'Metro TV Logo', key: 'METRO_TV_LOGO', fId: 'logoFile_METRO', uId: 'logoUrl_METRO' },
+          { title: 'PUNT Logo', key: 'PUNT_LOGO', fId: 'logoFile_PUNT', uId: 'logoUrl_PUNT' },
+          { title: 'KnokNox Logo', key: 'KNOKNOX_LOGO', fId: 'logoFile_KNOK', uId: 'logoUrl_KNOK' }
+        ].map(item => `
+          <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <img src="${fixMediaUrl(LOGO_CONFIG[item.key]) || FALLBACK_AVATAR}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;" onerror="this.src=FALLBACK_AVATAR" />
+              <strong style="font-size:0.82rem;">${item.title}</strong>
             </div>
-            <div style="display:flex; gap:6px; align-items:center;">
-              <input type="number" id="adminFol_${escapeHtml(u.username)}" value="${u.followers}" style="width:110px; padding:5px 8px;" />
-              <button class="btn btn-primary btn-sm" onclick="adminSetFollowers('${escapeHtml(u.username)}')">Set</button>
-            </div>
+            <label class="upload-dropzone" style="padding:7px 10px; margin-bottom:6px;">
+              ${ICONS.upload} <span id="lbl_${item.fId}">Upload Image File</span>
+              <input type="file" id="${item.fId}" accept="image/*" onchange="document.getElementById('lbl_${item.fId}').textContent = this.files[0] ? this.files[0].name : 'Upload Image File'" />
+            </label>
+            <input type="url" id="${item.uId}" placeholder="Or paste direct image URL" />
           </div>
         `).join('')}
       </div>
+      <button class="btn btn-primary btn-sm" style="margin-top:12px;" onclick="saveAdminBrandLogos()">
+        Update Global Brand Assets
+      </button>
     </div>
 
-    <!-- FULL POST ARCHIVE & SYSTEM AUDIT HISTORY -->
     <div class="card">
-      <h3 style="font-size:1rem; margin-bottom:10px;">📜 Full Post Moderation & Audit History (${STATE.posts.length} Posts / ${STATE.history.length} Logs)</h3>
-      <div style="display:flex; flex-direction:column; gap:8px; max-height:320px; overflow-y:auto;">
-        ${STATE.posts.map(p => `
-          <div style="background:var(--bg-input); padding:8px 12px; border-radius:8px; border:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; font-size:0.8rem;">
-            <div>
-              <span class="badge">${escapeHtml(p.platform)}</span>
-              <strong>@${escapeHtml(p.author)}</strong>: "${escapeHtml(p.caption.slice(0, 75))}"
-              <span class="badge" style="background:${p.status==='ACTIVE'?'rgba(46,213,115,0.2)':'rgba(255,71,87,0.25)'};">${escapeHtml(p.status)}</span>
+      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Moderation Reports (${STATE.reports.length})</h3>
+      ${STATE.reports.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">Queue is clear.</p>` : `
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${STATE.reports.map(r => `
+            <div style="background:var(--bg-input); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+              <div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <span class="badge">${escapeHtml(r.platform)}</span>
+                  <strong style="font-size:0.82rem;">${escapeHtml(r.postId)}</strong>
+                  <span style="font-size:0.78rem; color:var(--text-secondary);">by @${escapeHtml(r.postAuthor)}</span>
+                  <span class="badge">${escapeHtml(r.status)}</span>
+                </div>
+                <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:4px;">
+                  Flagged by @${escapeHtml(r.reporter)}: "${escapeHtml(r.reason)}"
+                </div>
+              </div>
+              <div style="display:flex; gap:6px;">
+                <button class="btn btn-danger btn-sm" onclick="adminExec('TAKEDOWN_POST', { postId: '${escapeHtml(r.postId)}', reason: 'Enclave Takedown' })">Take Down</button>
+                <button class="btn btn-outline btn-sm" onclick="adminExec('IGNORE_REPORT', { reportId: '${escapeHtml(r.reportId)}' })">Dismiss</button>
+                <button class="btn btn-outline btn-sm" onclick="adminExec('DELETE_REPORT', { reportId: '${escapeHtml(r.reportId)}' })">Delete</button>
+              </div>
             </div>
+          `).join('')}
+        </div>
+      `}
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Active Blocks (${STATE.blocks.length})</h3>
+      ${STATE.blocks.length === 0 ? `<p style="font-size:0.8rem; color:var(--text-secondary);">No active user blocks.</p>` : `
+        <div class="grid-2">
+          ${STATE.blocks.map(b => `
+            <div style="background:var(--bg-input); padding:10px 12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between;">
+              <span style="font-size:0.8rem;"><strong>@${escapeHtml(b.blocker)}</strong> blocked <strong>@${escapeHtml(b.blocked)}</strong></span>
+              <button class="btn btn-success btn-sm" onclick="adminExec('UNBLOCK_USER', { blockId: '${escapeHtml(b.blockId)}' })">Unblock</button>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:0.9rem; font-weight:700; margin-bottom:10px;">Audience Count Overrides</h3>
+      <div class="grid-2">
+        ${STATE.users.map(u => `
+          <div style="background:var(--bg-input); padding:10px 12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between; gap:8px;">
             <div>
-              ${p.status === 'ACTIVE' ? `
-                <button class="btn btn-danger btn-sm" onclick="adminExec('TAKEDOWN_POST', { postId: '${p.postId}', reason: 'Enclave Admin Takedown' })">Take Down</button>
-              ` : `
-                <button class="btn btn-success btn-sm" onclick="adminExec('RESTORE_POST', { postId: '${p.postId}' })">Restore</button>
-              `}
+              <strong style="font-size:0.82rem;">@${escapeHtml(u.username)}</strong>
+              <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-secondary);">${escapeHtml(u.tierLabel)}</div>
+            </div>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <input type="number" id="adminFol_${escapeHtml(u.username)}" value="${u.followers}" style="width:105px; padding:5px 8px;" />
+              <button class="btn btn-primary btn-sm" onclick="adminSetFollowers('${escapeHtml(u.username)}')">Apply</button>
             </div>
           </div>
         `).join('')}
       </div>
     </div>
   `;
+}
+
+async function saveAdminBrandLogos() {
+  const payload = {
+    action: 'saveBrandLogos',
+    adminUser: 'EnclaveAdmin',
+    adminPass: 'ADMIN_KEY_2026'
+  };
+
+  const pairs = [
+    { key: 'ENCLAVE_HUB_LOGO', fileId: 'logoFile_HUB', urlId: 'logoUrl_HUB' },
+    { key: 'METRO_TV_LOGO', fileId: 'logoFile_METRO', urlId: 'logoUrl_METRO' },
+    { key: 'PUNT_LOGO', fileId: 'logoFile_PUNT', urlId: 'logoUrl_PUNT' },
+    { key: 'KNOKNOX_LOGO', fileId: 'logoFile_KNOK', urlId: 'logoUrl_KNOK' }
+  ];
+
+  showLoading('Processing Brand Assets');
+  try {
+    for (const item of pairs) {
+      const fInput = document.getElementById(item.fileId);
+      const uInput = document.getElementById(item.urlId);
+      if (fInput && fInput.files && fInput.files[0]) {
+        const resized = await autoResizeImageFile(fInput.files[0], 220, 220, 0.82);
+        payload[item.key] = resized.dataUrl;
+      } else if (uInput && uInput.value.trim()) {
+        payload[item.key] = uInput.value.trim();
+      }
+    }
+  } finally {
+    hideLoading();
+  }
+
+  const res = await apiCall(payload, 'Publishing Brand Assets');
+  if (!res.ok) return showToast(res.error || 'Failed to save logos');
+  ingestBootstrap(res);
+  showToast('Brand logos updated.');
 }
 
 async function adminExec(subAction, extraParams) {
@@ -2050,414 +2266,14 @@ async function adminExec(subAction, extraParams) {
     adminPass: 'ADMIN_KEY_2026',
     subAction,
     ...extraParams
-  });
+  }, 'Applying Moderation Action');
   if (!res.ok) return showToast(res.error);
   ingestBootstrap(res);
-  showToast('Admin action executed: ' + subAction);
 }
 
 function adminSetFollowers(targetUser) {
   const val = Number(document.getElementById('adminFol_' + targetUser).value || 0);
   adminExec('SET_FOLLOWERS', { targetUser, followers: val });
-}
-
-/**
- * ============================================================================
- * 7. LOCAL PERSISTENT DATABASE FALLBACK (Mirrors Code.gs 1:1 when offline)
- * ============================================================================
- */
-function initLocalDemoDatabaseIfNeeded() {
-  if (localStorage.getItem('enclave_local_db_v1')) return;
-  const now = new Date().toISOString();
-  const initialDb = {
-    users: [
-      {
-        username: 'EnclaveAdmin',
-        password: 'ADMIN_KEY_2026',
-        displayName: 'Enclave Admin',
-        profilePic: LOGO_CONFIG.ENCLAVE_HUB_LOGO,
-        followers: 250000,
-        metroActive: true,
-        puntActive: true,
-        knoknoxActive: true,
-        isAdmin: true,
-        adminLogo: LOGO_CONFIG.ENCLAVE_HUB_LOGO,
-        createdAt: now
-      },
-      {
-        username: 'OTAY_ProGamer',
-        password: 'password123',
-        displayName: 'OTAY Phantom 9',
-        profilePic: 'https://api.dicebear.com/7.x/adventurer/svg?seed=OTAY',
-        followers: 15400,
-        metroActive: true,
-        puntActive: true,
-        knoknoxActive: true,
-        isAdmin: false,
-        adminLogo: '',
-        createdAt: now
-      },
-      {
-        username: 'NeonValkyrie',
-        password: 'password123',
-        displayName: 'Neon Valkyrie',
-        profilePic: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Valkyrie',
-        followers: 420,
-        metroActive: true,
-        puntActive: false,
-        knoknoxActive: true,
-        isAdmin: false,
-        adminLogo: '',
-        createdAt: now
-      }
-    ],
-    posts: [
-      {
-        postId: 'POST_DEMO_1',
-        author: 'OTAY_ProGamer',
-        platform: 'METROTV',
-        caption: '30-Minute Deep Dive: Benchmarking the new OTAY Phantom 9 Rig in 4K — Zero Thermal Throttling!',
-        mediaUrl: '',
-        mediaType: 'none',
-        durationSec: 540,
-        resolution: '1920×1080 (1080p FHD)',
-        genUpvotes: 33880,
-        genDownvotes: 2464,
-        manualUpvotes: 12,
-        manualDownvotes: 1,
-        sharedFromId: '',
-        sharedFromAuthor: '',
-        status: 'ACTIVE',
-        takedownReason: '',
-        createdAt: now
-      },
-      {
-        postId: 'POST_DEMO_2',
-        author: 'OTAY_ProGamer',
-        platform: 'PUNT',
-        caption: 'LIVE IRL downtown LA neon walk stream! 90/10 sub split hype — nobody stream snipe our coordinates 👀',
-        mediaUrl: '',
-        mediaType: 'none',
-        durationSec: 240,
-        resolution: '1280×720 (720p60 Live)',
-        genUpvotes: 32000,
-        genDownvotes: 1800,
-        manualUpvotes: 8,
-        manualDownvotes: 0,
-        sharedFromId: '',
-        sharedFromAuthor: '',
-        status: 'ACTIVE',
-        takedownReason: '',
-        createdAt: now
-      },
-      {
-        postId: 'POST_DEMO_3',
-        author: 'NeonValkyrie',
-        platform: 'KNOKNOX',
-        caption: 'Caught this midnight street drift in 4K on the way back from Doormart 🔥 #FYP #KnokNoxViral',
-        mediaUrl: '',
-        mediaType: 'none',
-        durationSec: 42,
-        resolution: '1080×1920 (9:16 Vertical)',
-        genUpvotes: 480,
-        genDownvotes: 28,
-        manualUpvotes: 5,
-        manualDownvotes: 0,
-        sharedFromId: '',
-        sharedFromAuthor: '',
-        status: 'ACTIVE',
-        takedownReason: '',
-        createdAt: now
-      }
-    ],
-    votes: [],
-    connections: [],
-    blocks: [],
-    groups: [],
-    messages: [],
-    reports: [],
-    history: [{ logId: 'LOG_1', actor: 'SYSTEM', action: 'INIT', details: 'Seeded Enclave Hub', createdAt: now }]
-  };
-  localStorage.setItem('enclave_local_db_v1', JSON.stringify(initialDb));
-}
-
-function localDatabaseEngine(req) {
-  const db = JSON.parse(localStorage.getItem('enclave_local_db_v1'));
-  const save = () => localStorage.setItem('enclave_local_db_v1', JSON.stringify(db));
-  const action = req.action;
-
-  if (action === 'signup') {
-    if (db.users.some(u => u.username.toLowerCase() === req.username.toLowerCase())) {
-      return { ok: false, error: 'Username already taken.' };
-    }
-    const isAdmin = req.username === 'EnclaveAdmin' && req.password === 'ADMIN_KEY_2026';
-    db.users.push({
-      username: req.username,
-      password: req.password,
-      displayName: isAdmin ? 'Enclave Admin' : (req.displayName || req.username),
-      profilePic: req.profilePic || ('https://api.dicebear.com/7.x/adventurer/svg?seed=' + encodeURIComponent(req.username)),
-      followers: isAdmin ? 250000 : (Number(req.initialFollowers) || 25),
-      metroActive: isAdmin,
-      puntActive: isAdmin,
-      knoknoxActive: isAdmin,
-      isAdmin: isAdmin,
-      adminLogo: isAdmin ? LOGO_CONFIG.ENCLAVE_HUB_LOGO : '',
-      createdAt: new Date().toISOString()
-    });
-    save();
-    return buildLocalBootstrap(db, req.username);
-  }
-
-  if (action === 'login') {
-    const u = db.users.find(x => x.username.toLowerCase() === req.username.toLowerCase() && x.password === req.password);
-    if (!u) return { ok: false, error: 'Invalid username or password.' };
-    return buildLocalBootstrap(db, u.username);
-  }
-
-  if (action === 'getBootstrap') {
-    return buildLocalBootstrap(db, req.username);
-  }
-
-  if (action === 'updateProfile') {
-    const u = db.users.find(x => x.username.toLowerCase() === req.username.toLowerCase());
-    if (!u) return { ok: false, error: 'User not found.' };
-    if (req.displayName) u.displayName = req.displayName;
-    if (req.profilePic) u.profilePic = req.profilePic;
-    if (req.adminLogo && u.isAdmin) u.adminLogo = req.adminLogo;
-    save();
-    return buildLocalBootstrap(db, u.username);
-  }
-
-  if (action === 'togglePlatform') {
-    const u = db.users.find(x => x.username.toLowerCase() === req.username.toLowerCase());
-    if (!u) return { ok: false, error: 'User not found.' };
-    const p = req.platform.toLowerCase();
-    if (p === 'metrotv') u.metroActive = !u.metroActive;
-    if (p === 'punt') u.puntActive = !u.puntActive;
-    if (p === 'knoknox') u.knoknoxActive = !u.knoknoxActive;
-    save();
-    return buildLocalBootstrap(db, u.username);
-  }
-
-  if (action === 'createPost') {
-    const u = db.users.find(x => x.username.toLowerCase() === req.author.toLowerCase());
-    if (!u) return { ok: false, error: 'Author not found.' };
-    const f = Math.max(1, Number(u.followers) || 1);
-    const tierInfo = calculateTierInfo(f);
-    const base = req.platform === 'KNOKNOX' ? Math.max(f, 25) : Math.max(f, 10);
-    const genUp = Math.max(1, Math.round(base * (0.50 + Math.random() * 0.10) * tierInfo.multiplier));
-    const genDown = Math.max(0, Math.round(base * (0.01 + Math.random() * 0.09) * tierInfo.multiplier));
-    u.followers = Number(u.followers || 0) + Math.max(1, Math.round((genUp - genDown) * 0.12));
-
-    db.posts.unshift({
-      postId: 'POST_' + Date.now(),
-      author: u.username,
-      platform: req.platform,
-      caption: req.caption,
-      mediaUrl: req.mediaUrl || '',
-      mediaType: req.mediaType || 'none',
-      durationSec: Number(req.durationSec) || 0,
-      resolution: req.resolution || 'Standard',
-      genUpvotes: genUp,
-      genDownvotes: genDown,
-      manualUpvotes: 0,
-      manualDownvotes: 0,
-      sharedFromId: req.sharedFromId || '',
-      sharedFromAuthor: req.sharedFromAuthor || '',
-      status: 'ACTIVE',
-      takedownReason: '',
-      createdAt: new Date().toISOString()
-    });
-    save();
-    return buildLocalBootstrap(db, u.username);
-  }
-
-  if (action === 'votePost') {
-    const existingIdx = db.votes.findIndex(v => v.postId === req.postId && v.username.toLowerCase() === req.username.toLowerCase());
-    if (existingIdx > -1) {
-      if (db.votes[existingIdx].voteType === req.voteType) db.votes.splice(existingIdx, 1);
-      else db.votes[existingIdx].voteType = req.voteType;
-    } else {
-      db.votes.push({ postId: req.postId, username: req.username, voteType: req.voteType });
-    }
-    const p = db.posts.find(x => x.postId === req.postId);
-    if (p) {
-      const pVotes = db.votes.filter(v => v.postId === req.postId);
-      p.manualUpvotes = pVotes.filter(v => v.voteType === 'UP').length;
-      p.manualDownvotes = pVotes.filter(v => v.voteType === 'DOWN').length;
-    }
-    save();
-    return buildLocalBootstrap(db, req.username);
-  }
-
-  if (action === 'reportPost') {
-    const p = db.posts.find(x => x.postId === req.postId);
-    if (!p) return { ok: false, error: 'Post not found.' };
-    db.reports.push({
-      reportId: 'REP_' + Date.now(),
-      postId: p.postId,
-      platform: p.platform,
-      postAuthor: p.author,
-      reporter: req.reporter,
-      reason: req.reason,
-      status: 'OPEN',
-      createdAt: new Date().toISOString()
-    });
-    save();
-    return buildLocalBootstrap(db, req.reporter);
-  }
-
-  if (action === 'sendConnectionRequest') {
-    const blocked = db.blocks.some(b =>
-      (b.blocker.toLowerCase() === req.receiver.toLowerCase() && b.blocked.toLowerCase() === req.requester.toLowerCase()) ||
-      (b.blocker.toLowerCase() === req.requester.toLowerCase() && b.blocked.toLowerCase() === req.receiver.toLowerCase())
-    );
-    if (blocked) return { ok: false, error: 'Blocked! Remains in Block List until removed by EnclaveAdmin.' };
-    const existing = db.connections.find(c =>
-      (c.requester.toLowerCase() === req.requester.toLowerCase() && c.receiver.toLowerCase() === req.receiver.toLowerCase()) ||
-      (c.requester.toLowerCase() === req.receiver.toLowerCase() && c.receiver.toLowerCase() === req.requester.toLowerCase())
-    );
-    if (existing) {
-      if (existing.status === 'DENIED') {
-        existing.requester = req.requester;
-        existing.receiver = req.receiver;
-        existing.status = 'PENDING';
-        save();
-        return buildLocalBootstrap(db, req.requester);
-      }
-      return { ok: false, error: 'Connection already pending or accepted.' };
-    }
-    db.connections.push({ connId: 'CONN_' + Date.now(), requester: req.requester, receiver: req.receiver, status: 'PENDING' });
-    save();
-    return buildLocalBootstrap(db, req.requester);
-  }
-
-  if (action === 'respondConnectionRequest') {
-    const c = db.connections.find(x => x.connId === req.connId);
-    if (c) c.status = req.decision;
-    save();
-    return buildLocalBootstrap(db, req.username);
-  }
-
-  if (action === 'blockUser') {
-    db.blocks.push({ blockId: 'BLK_' + Date.now(), blocker: req.blocker, blocked: req.blocked });
-    db.connections = db.connections.filter(c => !(
-      (c.requester.toLowerCase() === req.blocker.toLowerCase() && c.receiver.toLowerCase() === req.blocked.toLowerCase()) ||
-      (c.requester.toLowerCase() === req.blocked.toLowerCase() && c.receiver.toLowerCase() === req.blocker.toLowerCase())
-    ));
-    save();
-    return buildLocalBootstrap(db, req.blocker);
-  }
-
-  if (action === 'createGroup') {
-    const unique = Array.from(new Set(req.members));
-    if (unique.length > 5) return { ok: false, error: 'Max 5 members allowed in a group.' };
-    db.groups.push({ groupId: 'GRP_' + Date.now(), groupName: req.groupName, creator: req.creator, members: unique });
-    save();
-    return buildLocalBootstrap(db, req.creator);
-  }
-
-  if (action === 'sendMessage') {
-    db.messages.push({
-      msgId: 'MSG_' + Date.now(),
-      chatType: req.chatType,
-      targetId: req.targetId,
-      sender: req.sender,
-      text: req.text || '',
-      mediaUrl: req.mediaUrl || '',
-      sharedPostId: req.sharedPostId || '',
-      replyToMsgId: req.replyToMsgId || '',
-      replyPreview: req.replyPreview || '',
-      createdAt: new Date().toISOString()
-    });
-    save();
-    return buildLocalBootstrap(db, req.sender);
-  }
-
-  if (action === 'adminAction') {
-    if (req.subAction === 'TAKEDOWN_POST') {
-      const p = db.posts.find(x => x.postId === req.postId);
-      if (p) { p.status = 'TAKEDOWN'; p.takedownReason = req.reason; }
-      db.reports.forEach(r => { if (r.postId === req.postId) r.status = 'TAKEN_DOWN'; });
-    } else if (req.subAction === 'RESTORE_POST') {
-      const p = db.posts.find(x => x.postId === req.postId);
-      if (p) p.status = 'ACTIVE';
-    } else if (req.subAction === 'IGNORE_REPORT') {
-      const r = db.reports.find(x => x.reportId === req.reportId);
-      if (r) r.status = 'IGNORED';
-    } else if (req.subAction === 'DELETE_REPORT') {
-      db.reports = db.reports.filter(x => x.reportId !== req.reportId);
-    } else if (req.subAction === 'UNBLOCK_USER') {
-      db.blocks = db.blocks.filter(x => x.blockId !== req.blockId);
-    } else if (req.subAction === 'SET_FOLLOWERS') {
-      const u = db.users.find(x => x.username.toLowerCase() === req.targetUser.toLowerCase());
-      if (u) u.followers = Number(req.followers) || 0;
-    }
-    save();
-    return buildLocalBootstrap(db, 'EnclaveAdmin');
-  }
-
-  return { ok: false, error: 'Unhandled action' };
-}
-
-function buildLocalBootstrap(db, username) {
-  const reqLower = String(username || '').toLowerCase();
-  const isAdmin = reqLower === 'enclaveadmin';
-
-  const users = db.users.map(u => {
-    const t = calculateTierInfo(u.followers);
-    const uPosts = db.posts.filter(p => p.author.toLowerCase() === u.username.toLowerCase() && p.status === 'ACTIVE');
-    const up = uPosts.reduce((s, p) => s + (p.genUpvotes || 0) + (p.manualUpvotes || 0), 0);
-    const down = uPosts.reduce((s, p) => s + (p.genDownvotes || 0) + (p.manualDownvotes || 0), 0);
-    return {
-      ...u,
-      tier: t.tier,
-      multiplier: t.multiplier,
-      verified: t.verified || u.isAdmin,
-      tierLabel: t.label,
-      totalUpvotes: up,
-      totalDownvotes: down
-    };
-  });
-
-  const currentUser = users.find(u => u.username.toLowerCase() === reqLower);
-  const posts = db.posts.map(p => {
-    const myV = db.votes.find(v => v.postId === p.postId && v.username.toLowerCase() === reqLower);
-    return {
-      ...p,
-      upvotes: (p.genUpvotes || 0) + (p.manualUpvotes || 0),
-      downvotes: (p.genDownvotes || 0) + (p.manualDownvotes || 0),
-      myVote: myV ? myV.voteType : null
-    };
-  });
-
-  const visibleGroups = db.groups.filter(g => g.members.some(m => m.toLowerCase() === reqLower));
-
-  return {
-    ok: true,
-    currentUser,
-    users,
-    posts: isAdmin ? posts : posts.filter(p => p.status === 'ACTIVE' || p.author.toLowerCase() === reqLower),
-    connections: db.connections,
-    blocks: db.blocks,
-    groups: visibleGroups,
-    messages: db.messages,
-    reports: isAdmin ? db.reports : [],
-    history: isAdmin ? db.history : [],
-    globalAdminLogo: (users.find(u => u.isAdmin) || {}).adminLogo || LOGO_CONFIG.ENCLAVE_HUB_LOGO
-  };
-}
-
-/**
- * Utility Helpers
- */
-function fileToDataUrl(file) {
-  return new Promise((resolve, reject) => {
-    const r = new FileReader();
-    r.onload = e => resolve(e.target.result);
-    r.onerror = reject;
-    r.readAsDataURL(file);
-  });
 }
 
 function escapeHtml(str) {
@@ -2470,7 +2286,7 @@ function escapeHtml(str) {
 }
 
 function formatTime(iso) {
-  if (!iso) return 'Just now';
+  if (!iso) return 'now';
   const d = new Date(iso);
   return isNaN(d.getTime()) ? String(iso) : d.toLocaleString();
 }
@@ -2480,7 +2296,7 @@ function showToast(msg) {
   el.textContent = msg;
   el.style.display = 'block';
   clearTimeout(window.__toastTimer);
-  window.__toastTimer = setTimeout(() => { el.style.display = 'none'; }, 3600);
+  window.__toastTimer = setTimeout(() => { el.style.display = 'none'; }, 3200);
 }
 </script>
 </body>
